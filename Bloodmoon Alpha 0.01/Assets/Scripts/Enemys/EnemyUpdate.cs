@@ -29,14 +29,17 @@ public class EnemyUpdate : MonoBehaviour
         {
             see = GetComponent<Vision>();
         }
-        if (see.vision(player))
+        if (see.vision(player, range))
         {
-            move.MoveTo(player.transform.position, agent, 10f);
+            move.MoveTo(player.transform.position, agent, range);
         }
         else
         {
-            moveto = roam.Roam(range);
-            move.MoveTo(moveto, agent, range);
+            if (!agent.hasPath || agent.isStopped)
+            {
+                moveto = roam.Roam(10f);
+                move.MoveTo(moveto, agent, 10f);
+            }
         }
     }
 }

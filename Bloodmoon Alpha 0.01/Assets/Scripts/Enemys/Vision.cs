@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-    public bool vision(GameObject player)
+    public bool vision(GameObject player, float range)
     {
-        if (Physics.Raycast(transform.position, player.transform.position, out RaycastHit hit)) 
+        Debug.DrawRay(transform.position, player.transform.position - transform.position);
+        if (Physics.Raycast(transform.position, player.transform.position - transform.position, out RaycastHit hit, range))
         {
             return false;
         }
-        return true;
+        else
+        {
+            return true;
+        }
     }
 }

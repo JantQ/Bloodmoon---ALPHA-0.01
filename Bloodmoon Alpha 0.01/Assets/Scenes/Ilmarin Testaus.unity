@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ae681f9b8a7d3468376e3a2fd7fe6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanseTester
-  numbers: 1000
+  numbers: 500
   enemy: {fileID: 4117378132030884460, guid: e68f7cb990aba80478301b1909d54280, type: 3}
 --- !u!1 &1247707870
 GameObject:
@@ -456,6 +456,10 @@ PrefabInstance:
     - target: {fileID: 1770665879486875031, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
       propertyPath: m_Name
       value: EnemyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4845938866608949947, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
+      propertyPath: range
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5117061165616636446, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
       propertyPath: m_LocalPosition.x
