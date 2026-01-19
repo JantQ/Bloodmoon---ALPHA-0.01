@@ -303,9 +303,11 @@ MonoBehaviour:
   Ghoust: {fileID: 0}
   buildings:
   - {fileID: 5154142023962115778, guid: 1286cc83da4e11246a5ec22916618046, type: 3}
+  - {fileID: 1958026764545056860, guid: bed2f01af54289848bb3a47a26aaac6a, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 55
+  build: 1
 --- !u!4 &842924858
 Transform:
   m_ObjectHideFlags: 0
