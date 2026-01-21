@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1916790600952287018}
   - component: {fileID: 3242709670840053029}
   - component: {fileID: -4461248362065670650}
+  - component: {fileID: 438752393690128593}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Vision
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483703
 --- !u!136 &3242709670840053029
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -220,3 +221,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7388242904049665935}
   m_Enabled: 1
+--- !u!114 &438752393690128593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4117378132030884460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca957a856a03c946b4df84380f180aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
+  damage: 15
+  attackCooldown: 1
