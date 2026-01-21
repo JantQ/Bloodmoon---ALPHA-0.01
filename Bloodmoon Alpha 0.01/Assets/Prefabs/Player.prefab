@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7838319249959642443}
   - component: {fileID: 6805607479661699543}
   - component: {fileID: 2811789680434383687}
-  - component: {fileID: 2887666392385346346}
+  - component: {fileID: 192380649127899171}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4357339037014856234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: -0.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,7 +93,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4357339037014856234}
   m_Enabled: 1
---- !u!114 &2887666392385346346
+--- !u!114 &192380649127899171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +153,12 @@ GameObject:
   - component: {fileID: 787037745277988377}
   - component: {fileID: 7940442512727604363}
   - component: {fileID: 2597826424743788865}
+  - component: {fileID: 5634770316470584975}
   - component: {fileID: 804790548387430392}
   - component: {fileID: 487210184497923490}
   - component: {fileID: 2563249777043237330}
+  - component: {fileID: 4619470843361253705}
+  - component: {fileID: 1690818179886973746}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -321,8 +324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovementManager
   moveSpeed: 2
   speedMultiplier: 2.5
-  sensitivity: 300
-  jumpPower: 400
+  sensitivity: 200
+  jumpPower: 250
 --- !u!114 &2597826424743788865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +338,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5534f7bb939de4daeb6ed8e21a0f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Walking
+--- !u!114 &5634770316470584975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720249563089100341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742679123ee7c5342ae0e98768062de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Running
 --- !u!114 &804790548387430392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,3 +387,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jumping
   isOnGround: 0
+--- !u!114 &4619470843361253705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720249563089100341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c677027687f1ed4bbd9253d4171a3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Looking
+--- !u!114 &1690818179886973746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720249563089100341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e807fc99d1a68704bb86062a7fd00cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  currentHealth: 0
+  isDead: 0
