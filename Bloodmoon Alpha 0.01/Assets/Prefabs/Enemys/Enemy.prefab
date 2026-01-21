@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8168360983032888707}
   - component: {fileID: 1916790600952287018}
   - component: {fileID: 3242709670840053029}
+  - component: {fileID: 6165510725126244781}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -189,3 +190,17 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!114 &6165510725126244781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4117378132030884460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca957a856a03c946b4df84380f180aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
+  damage: 15
+  attackCooldown: 1
