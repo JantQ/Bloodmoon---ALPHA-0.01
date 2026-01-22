@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: TestChestPlate
+  m_Name: ChestPlate
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 0}
-  itemTag: 0
+  itemTag: 2
   equipmentPrefab: {fileID: 0}

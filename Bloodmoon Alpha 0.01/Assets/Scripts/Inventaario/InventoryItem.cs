@@ -2,26 +2,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
-    [Header("UI")]
-    public Image image;
+    Image itemIcon;
+    public CanvasGroup canvasGroup {  get; private set; }
 
-    [HideInInspector] public Transform parentAfterDrag;
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        image.raycastTarget =false;
-        parentAfterDrag =transform.parent;
-        transform.SetParent(transform.root);
+    public Item myItem { get; set; }
+    public InventorySlot activeSlot { get; set; }
 
-    }
-    public void OnDrag(PointerEventData eventData)
+    void Awake()
     {
-        transform.position = Input.mousePosition;
+        canvasGroup = GetComponent<CanvasGroup>();
+        itemIcon = GetComponent<Image>();
     }
-    public void OnEndDrag(PointerEventData eventData)
+    public void Initialize(Item item,InventorySlot parent)
     {
-        image.raycastTarget=true;
-        transform.SetParent(parentAfterDrag);
+        activeSlot = parent;
+        activeSlot.myItem = this;
+        myItem = item;
+        itemIcon.sprite = item.sprite;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Inventory.Singleton.SetCarriedItem(this);
+        }
     }
 }
