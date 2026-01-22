@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Buildables
   - Enemy
+  - Hotbar
   layers:
   - Default
   - TransparentFX

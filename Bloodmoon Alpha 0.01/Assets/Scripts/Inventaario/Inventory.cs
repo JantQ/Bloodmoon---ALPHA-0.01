@@ -81,14 +81,36 @@ public class Inventory : MonoBehaviour
     {
         Item _item = item;
         if (_item == null)
-        { _item = PickRandomItem(); }
+        {
+            _item = PickRandomItem();
+        }
 
+        // Try to merge with existing stackable items first
+        if (_item.itemTag == SlotTag.Stackable)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.myItem != null && slot.myItem.myItem == _item)
+                {
+                    int maxStack = 64;
+                    int spaceLeft = maxStack - slot.myItem.count;
+
+                    if (spaceLeft > 0)
+                    {
+                        slot.myItem.AddStack(1); // spawn 1 at a time
+                        return; // done, merged into existing stack
+                    }
+                }
+            }
+        }
+
+        // Otherwise, find an empty slot
         for (int i = 0; i < inventorySlots.Length; i++)
         {
-            // Check if the slot is empty
             if (inventorySlots[i].myItem == null)
             {
-                Instantiate(itemPrefab, inventorySlots[i].transform).Initialize(_item, inventorySlots[i]);
+                InventoryItem newItem = Instantiate(itemPrefab, inventorySlots[i].transform);
+                newItem.Initialize(_item, inventorySlots[i]);
                 break;
             }
         }

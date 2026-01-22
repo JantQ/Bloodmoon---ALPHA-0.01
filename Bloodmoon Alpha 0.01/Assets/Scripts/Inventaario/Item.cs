@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal.Internal;
 using UnityEngine.Tilemaps;
 
 
-public enum SlotTag { None, Head, Chest, Legs, Feet}
+public enum SlotTag { None, Head, Chest, Legs, Feet, Stackable}
 [CreateAssetMenu(menuName = "Scriptable Object/Item")]
 public class Item : ScriptableObject
 {

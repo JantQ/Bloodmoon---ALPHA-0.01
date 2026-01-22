@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class InventoryToggle : MonoBehaviour
 {
-    public GameObject inventoryUI;
+    public GameObject inventoryUI;       // Parent of all inventory elements
+    public string excludeTag = "Hotbar"; // Tag for UI elements that should always stay visible
     public KeyCode toggleKey = KeyCode.I;
 
     private bool isOpen;
 
     void Start()
     {
-        inventoryUI.SetActive(false);
+        SetInventoryActive(false);
         LockCursor();
     }
 
@@ -27,7 +28,7 @@ public class InventoryToggle : MonoBehaviour
     void OpenInventory()
     {
         isOpen = true;
-        inventoryUI.SetActive(true);
+        SetInventoryActive(true);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -38,7 +39,7 @@ public class InventoryToggle : MonoBehaviour
     void CloseInventory()
     {
         isOpen = false;
-        inventoryUI.SetActive(false);
+        SetInventoryActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -50,5 +51,15 @@ public class InventoryToggle : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void SetInventoryActive(bool active)
+    {
+        // Toggle all children except those with the excludeTag
+        foreach (Transform child in inventoryUI.transform)
+        {
+            if (!child.CompareTag(excludeTag))
+                child.gameObject.SetActive(active);
+        }
     }
 }
