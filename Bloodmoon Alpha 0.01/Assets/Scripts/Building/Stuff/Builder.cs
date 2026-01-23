@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Builder : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class Builder : MonoBehaviour
             {
                 Ghoust = Instantiate(buildings[build]);
                 Ghoust.GetComponentInChildren<Renderer>().material = valid;
-                BoxCollider[] box = Ghoust.GetComponentsInChildren<BoxCollider>();
+                MeshCollider[] box = Ghoust.GetComponentsInChildren<MeshCollider>();
                 for (int i = 0; i < box.Length; ++i)
                 {
                     box[i].enabled = false;
@@ -77,7 +78,7 @@ public class Builder : MonoBehaviour
     /// <param name="hit"></param>
     public void Snap(RaycastHit hit) // Ota ray niin tiet‰‰ mit‰ katsoo
     {
-        if (hit.transform.tag == "Floor") // Jos katsot lattiaa, yhdisty siihen.
+        if (hit.transform.name == "Floor(Clone)") // Jos katsot lattiaa, yhdisty siihen.
         {
             Vector3 dir = hit.transform.position - hit.point;
             dir.y = 0;
@@ -121,7 +122,7 @@ public class Builder : MonoBehaviour
                 Ghoust.transform.position = hit.transform.position + dir;
             }
         }
-        else if (hit.transform.tag == "Wall") // jos katsoo sein‰‰ snap sein‰‰n
+        else if (hit.transform.name == "Wall(Clone)") // jos katsoo sein‰‰ snap sein‰‰n
         {
             Vector3 dir = hit.transform.position - hit.point;
             Ghoust.transform.position = hit.transform.position + dir;
