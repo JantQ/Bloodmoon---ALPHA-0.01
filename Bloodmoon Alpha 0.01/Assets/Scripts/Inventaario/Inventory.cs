@@ -11,7 +11,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] InventorySlot[] inventorySlots;
     [SerializeField] InventorySlot[] hotbarSlots;
 
-    // 0=Head, 1=Chest, 2=Legs, 3=Feet
     [SerializeField] InventorySlot[] equipmentSlots;
 
     [SerializeField] Transform draggablesTransform;
@@ -23,17 +22,16 @@ public class Inventory : MonoBehaviour
     [Header("Debug")]
     [SerializeField] Button giveItemBtn;
 
-    void Awake()
+    private void Awake()
     {
         Singleton = this;
-        giveItemBtn.onClick.AddListener(delegate { SpawnInventoryItem(); });
+        giveItemBtn.onClick.AddListener(() => SpawnInventoryItem());
     }
 
-    void Update()
+    private void Update()
     {
-        if (carriedItem == null) return;
-
-        carriedItem.transform.position = Input.mousePosition;
+        if (carriedItem != null)
+            carriedItem.transform.position = Input.mousePosition;
     }
 
     public void SetCarriedItem(InventoryItem item)
@@ -45,7 +43,7 @@ public class Inventory : MonoBehaviour
         }
 
         if (item.activeSlot.myTag != SlotTag.None)
-        { EquipEquipment(item.activeSlot.myTag, null); }
+            EquipEquipment(item.activeSlot.myTag, null);
 
         carriedItem = item;
         carriedItem.canvasGroup.blocksRaycasts = false;
@@ -58,34 +56,21 @@ public class Inventory : MonoBehaviour
         {
             case SlotTag.Head:
                 if (item == null)
-                {
-                    // Destroy item.equipmentPrefab on the Player Object;
                     Debug.Log("Unequipped helmet on " + tag);
-                }
                 else
-                {
-                    // Instantiate item.equipmentPrefab on the Player Object;
                     Debug.Log("Equipped " + item.myItem.name + " on " + tag);
-                }
                 break;
-            case SlotTag.Chest:
-                break;
-            case SlotTag.Legs:
-                break;
-            case SlotTag.Feet:
-                break;
+            case SlotTag.Chest: break;
+            case SlotTag.Legs: break;
+            case SlotTag.Feet: break;
         }
     }
 
     public void SpawnInventoryItem(Item item = null)
     {
-        Item _item = item;
-        if (_item == null)
-        {
-            _item = PickRandomItem();
-        }
+        Item _item = item ?? PickRandomItem();
 
-        // Try to merge with existing stackable items first
+        // Merge stackable items if possible
         if (_item.itemTag == SlotTag.Stackable)
         {
             foreach (InventorySlot slot in inventorySlots)
@@ -97,14 +82,14 @@ public class Inventory : MonoBehaviour
 
                     if (spaceLeft > 0)
                     {
-                        slot.myItem.AddStack(1); // spawn 1 at a time
-                        return; // done, merged into existing stack
+                        slot.myItem.AddStack(1);
+                        return; // merged successfully
                     }
                 }
             }
         }
 
-        // Otherwise, find an empty slot
+        // Otherwise, spawn in an empty slot
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (inventorySlots[i].myItem == null)
@@ -116,7 +101,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    Item PickRandomItem()
+    private Item PickRandomItem()
     {
         int random = Random.Range(0, items.Length);
         return items[random];

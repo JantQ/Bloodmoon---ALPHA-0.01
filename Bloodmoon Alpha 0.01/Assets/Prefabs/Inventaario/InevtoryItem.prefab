@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fd2e2a5555c8148ba07d2e6aff86ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  itemIcon: {fileID: 8592058417401867277}
   countText: {fileID: 1800920684209469668}
   count: 1
 --- !u!225 &-1926683966867035948
