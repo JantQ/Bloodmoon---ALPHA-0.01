@@ -78,7 +78,7 @@ public class Builder : MonoBehaviour
     /// <param name="hit"></param>
     public void Snap(RaycastHit hit) // Ota ray niin tiet‰‰ mit‰ katsoo
     {
-        if (hit.transform.name == "Floor(Clone)") // Jos katsot lattiaa, yhdisty siihen.
+        if (hit.transform.tag == "Floor") // Jos katsot lattiaa, yhdisty siihen.
         {
             Vector3 dir = hit.transform.position - hit.point;
             dir.y = 0;
@@ -88,11 +88,11 @@ public class Builder : MonoBehaviour
                 dir.z = 0;
                 if (dir.x < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
                 {
-                    dir.x = 4;
+                    dir.x = 4 * Ghoust.transform.localScale.x / 100;
                 }
                 else
                 {
-                    dir.x = -4;
+                    dir.x = -4 * Ghoust.transform.localScale.x / 100;
                 }
             }
             else
@@ -100,21 +100,21 @@ public class Builder : MonoBehaviour
                 dir.x = 0;
                 if (dir.z < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
                 {
-                    dir.z = 4;
+                    dir.z = 4 * Ghoust.transform.localScale.x / 100;
                 }
                 else
                 {
-                    dir.z = -4;
+                    dir.z = -4 * Ghoust.transform.localScale.x / 100;
                 }
             }
-            if (Ghoust.name == "Wall(Clone)") // mik‰li yrit‰t laittaa sein‰‰, s‰‰d‰ siainti t‰ydellist‰ sn‰ppi‰ varten ja k‰‰nn‰ oikeaan suuntaan
+            if (Ghoust.tag == "Wall") // mik‰li yrit‰t laittaa sein‰‰, s‰‰d‰ siainti t‰ydellist‰ sn‰ppi‰ varten ja k‰‰nn‰ oikeaan suuntaan
             { 
                 dir.z /= 2;
                 dir.x /= 2;
-                uplift.y = 2;
+                uplift.y = 2 * Ghoust.transform.localScale.x / 100;
                 Ghoust.transform.position = hit.transform.position + dir + uplift;
                 Vector3 target = hit.transform.position;
-                target.y += 2;
+                target.y += 2 * Ghoust.transform.localScale.x / 100;
                 Ghoust.transform.LookAt(target);
             }
             else // Jos et ole luomassa mit‰‰n edellisist‰, k‰yt‰ default
@@ -122,23 +122,23 @@ public class Builder : MonoBehaviour
                 Ghoust.transform.position = hit.transform.position + dir;
             }
         }
-        else if (hit.transform.name == "Wall(Clone)") // jos katsoo sein‰‰ snap sein‰‰n
+        else if (hit.transform.tag == "Wall") // jos katsoo sein‰‰ snap sein‰‰n
         {
             Vector3 dir = hit.transform.position - hit.point;
             Ghoust.transform.position = hit.transform.position + dir;
-            if (Ghoust.name == "Floor(Clone)") // jos olet valinnut lattian, rajaa snap suunnat
+            if (Ghoust.tag == "Floor") // jos olet valinnut lattian, rajaa snap suunnat
             {
                 if (dir.y > 0)
                 {
                     dir = new Vector3();
-                    dir.y = -2;
-                    dir += hit.transform.forward * 2;
+                    dir.y = -2 * Ghoust.transform.localScale.x / 100;
+                    dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
                 }
                 else
                 {
                     dir = new Vector3();
-                    dir.y = 2;
-                    dir += hit.transform.forward * 2;
+                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                    dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
                 }
                 Ghoust.transform.position = hit.transform.position + dir;
             }
@@ -151,12 +151,12 @@ public class Builder : MonoBehaviour
                         if (dir.x > 0)
                         {
                             dir = new Vector3();
-                            dir.x = -4;
+                            dir.x = -4 * Ghoust.transform.localScale.x / 100;
                         }
                         else
                         {
                             dir = new Vector3();
-                            dir.x = 4;
+                            dir.x = 4 * Ghoust.transform.localScale.x / 100;
                         }
                     }
                     else
@@ -164,12 +164,12 @@ public class Builder : MonoBehaviour
                         if (dir.y > 0)
                         {
                             dir = new Vector3();
-                            dir.y = -4;
+                            dir.y = -4 * Ghoust.transform.localScale.x / 100;
                         }
                         else
                         {
                             dir = new Vector3();
-                            dir.y = 4;
+                            dir.y = 4 * Ghoust.transform.localScale.x / 100;
                         }
                     }
                 }
@@ -180,12 +180,12 @@ public class Builder : MonoBehaviour
                         if (dir.z > 0)
                         {
                             dir = new Vector3();
-                            dir.z = -4;
+                            dir.z = -4 * Ghoust.transform.localScale.x / 100;
                         }
                         else
                         {
                             dir = new Vector3();
-                            dir.z = 4;
+                            dir.z = 4 * Ghoust.transform.localScale.x / 100;
                         }
                     }
                     else
@@ -193,12 +193,12 @@ public class Builder : MonoBehaviour
                         if (dir.y > 0)
                         {
                             dir = new Vector3();
-                            dir.y = -4;
+                            dir.y = -4 * Ghoust.transform.localScale.x / 100;
                         }
                         else
                         {
                             dir = new Vector3();
-                            dir.y = 4;
+                            dir.y = 4 * Ghoust.transform.localScale.x / 100;
                         }
                     }
                 }
@@ -214,6 +214,7 @@ public class Builder : MonoBehaviour
 
     private bool Valid()
     {
+        return true;
         Validation val = Ghoust.GetComponentInChildren<Validation>();
         bool valid_bool= val.IsValid(mask);
         if (true)
