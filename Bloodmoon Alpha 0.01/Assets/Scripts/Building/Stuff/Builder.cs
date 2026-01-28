@@ -60,17 +60,22 @@ public class Builder : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 rotat += 90;
+                if (rotat >= 360)
+                {
+                    rotat = 0;
+                }
             }
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
                 Snap(hit);
-                Ghoust.transform.Rotate(0, rotat, 0);
+                SpinMeRightRound(hit);
                 Ghoust.SetActive(true);
             }
             else { Ghoust.SetActive(false); }
             if (Ghoust.active && Input.GetMouseButtonDown(0) && Valid()) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
                 Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
+                rotat = 0;
             }
         }
         else if (Ghoust != null) // Jos ei rakentamassa ja haamu on olemassa, tuhoa haamu
@@ -235,5 +240,53 @@ public class Builder : MonoBehaviour
             val.transform.GetComponent<Renderer>().material = invalid;
         }
         return true;
+    }
+
+    private void SpinMeRightRound(RaycastHit hit)
+    {
+        if (Ghoust.tag != "Wall")
+        {
+            Ghoust.transform.Rotate(0, rotat, 0);
+        }
+        else if (rotat != 0 && hit.transform.tag != "Floor")
+        {
+            if (rotat == 180)
+            {
+                rotat += 90;
+            }
+            float x = (hit.transform.position.x - Ghoust.transform.position.x) / 2;
+            float z = (hit.transform.position.z - Ghoust.transform.position.z) / 2;
+            if (hit.transform.position.y - Ghoust.transform.position.y == 0)
+                {
+                if (x == 0)
+                {
+                    if (rotat == 90)
+                    {
+                        x += 2 * Ghoust.transform.localScale.x / 100;
+                    }
+                    else
+                    {
+                        x -= 2 * Ghoust.transform.localScale.x / 100;
+                    }
+                }
+                else
+                {
+                    if (rotat == 90)
+                    {
+                        z += 2 * Ghoust.transform.localScale.z / 100;
+                    }
+                    else
+                    {
+                        z -= 2 * Ghoust.transform.localScale.z / 100;
+                    }
+                }
+                Ghoust.transform.position += new Vector3(x, 0, z);
+                Ghoust.transform.Rotate(0, 90, 0);
+            }
+        }
+        else if (rotat != 0 && hit.transform.tag == "Floor")
+        {
+            Ghoust.transform.Rotate(0, 0, rotat);
+        }
     }
 }
