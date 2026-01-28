@@ -31,6 +31,8 @@ public class Builder : MonoBehaviour
     /// </summary>
     public int build = 0;
 
+    public int rotat = 0;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B)) // Togle building mode
@@ -55,9 +57,14 @@ public class Builder : MonoBehaviour
                 }
                 box[0].transform.AddComponent<Validation>();
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                rotat += 90;
+            }
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
                 Snap(hit);
+                Ghoust.transform.Rotate(0, rotat, 0);
                 Ghoust.SetActive(true);
             }
             else { Ghoust.SetActive(false); }
@@ -119,6 +126,7 @@ public class Builder : MonoBehaviour
             }
             else // Jos et ole luomassa mit‰‰n edellisist‰, k‰yt‰ default
             {
+                Ghoust.transform.rotation = hit.transform.rotation;
                 Ghoust.transform.position = hit.transform.position + dir;
             }
         }
@@ -208,6 +216,7 @@ public class Builder : MonoBehaviour
         }
         else // mik‰li et osu mihink‰‰n mihin snap toimii, laita mihin ray osoittaa
         {
+            Ghoust.transform.rotation = new Quaternion();
             Ghoust.transform.position = hit.point;
         }
     }
