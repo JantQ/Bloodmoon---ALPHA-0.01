@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Wall
   - Ground
+  - Stairs
   layers:
   - Default
   - TransparentFX

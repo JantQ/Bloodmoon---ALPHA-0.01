@@ -129,6 +129,12 @@ public class Builder : MonoBehaviour
                 target.y += 2 * Ghoust.transform.localScale.x / 100;
                 Ghoust.transform.LookAt(target);
             }
+            else if (Ghoust.tag == "Stairs") 
+            {
+                Ghoust.transform.rotation = new Quaternion();
+                uplift.y = 2 * Ghoust.transform.localScale.x / 100;
+                Ghoust.transform.position = hit.transform.position + uplift;
+            }
             else // Jos et ole luomassa mit‰‰n edellisist‰, k‰yt‰ default
             {
                 Ghoust.transform.rotation = hit.transform.rotation;
@@ -154,6 +160,10 @@ public class Builder : MonoBehaviour
                     dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
                 }
                 Ghoust.transform.position = hit.transform.position + dir;
+            }
+            else if(Ghoust.tag == "Stairs")
+            {
+                dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
             }
             else
             {
@@ -218,6 +228,69 @@ public class Builder : MonoBehaviour
             }
             Ghoust.transform.rotation = hit.transform.rotation;
             Ghoust.transform.position = hit.transform.position + dir;
+        }
+        else if (hit.transform.tag == "Stairs")
+        {
+            Vector3 dir = hit.transform.position - hit.point;
+            if (Ghoust.tag == "Floor")
+            {
+                if (dir.y < 0)
+                {
+                    dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                    Ghoust.transform.position = hit.transform.position + dir;
+                }
+                else
+                {
+                    dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                    Ghoust.transform.position = hit.transform.position - dir;
+                }
+            }
+            else if (Ghoust.tag == "Wall")
+            {
+                if (dir.y < 0)
+                {
+                    dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                    dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                    Ghoust.transform.position = hit.transform.position + dir;
+                }
+                else
+                {
+                    dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                    dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                    Ghoust.transform.position = hit.transform.position - dir;
+                }
+            }
+            else
+            {
+                if (Mathf.Abs(dir.y) > 0.5f)
+                {
+                    if (dir.y < 0)
+                    {
+                        dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                        dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                    }
+                    else
+                    {
+                        dir = hit.transform.forward * -4 * Ghoust.transform.localScale.x / 100;
+                        dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                    }
+                }
+                else
+                {
+                    if (dir.x + dir.z < 0)
+                    {
+                        dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                    }
+                    else
+                    {
+                        dir = hit.transform.right * -4 * Ghoust.transform.localScale.x / 100;
+                    }
+                }
+                Ghoust.transform.position = hit.transform.position - dir;
+            }
+            Ghoust.transform.rotation = hit.transform.rotation;
         }
         else // mik‰li et osu mihink‰‰n mihin snap toimii, laita mihin ray osoittaa
         {
