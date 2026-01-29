@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 public class InventoryItem : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI References")]
-    [SerializeField] private Image itemIcon;    // Assign in prefab
-    [SerializeField] private Text countText;    // Assign in prefab
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private Text countText;
 
     public CanvasGroup canvasGroup { get; private set; }
 
@@ -14,7 +14,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     public InventorySlot activeSlot { get; set; }
 
     [HideInInspector]
-    public int count = 1; // For stackable items
+    public int count = 1;
 
     private void Awake()
     {
@@ -24,15 +24,15 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     public void Initialize(Item item, InventorySlot parent)
     {
         activeSlot = parent;
-        activeSlot.myItem = this;
+
+        if (activeSlot != null)
+            activeSlot.myItem = this;
 
         myItem = item;
 
-        // Assign correct sprite
         if (itemIcon != null && myItem != null)
             itemIcon.sprite = myItem.sprite;
 
-        // Handle stackable count
         if (myItem.itemTag == SlotTag.Stackable)
         {
             count = 1;
@@ -63,5 +63,30 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         {
             Inventory.Singleton.SetCarriedItem(this);
         }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            TrySplitStack();
+        }
+    }
+
+    private void TrySplitStack()
+    {
+        if (myItem.itemTag != SlotTag.Stackable) return;
+        if (count <= 1) return;
+
+        int half = Mathf.CeilToInt(count / 2f);
+
+        count -= half;
+        UpdateCountText();
+
+        InventoryItem splitItem =
+            Instantiate(this, Inventory.Singleton.DraggableRoot);
+
+        splitItem.activeSlot = null;
+        splitItem.count = half;
+        splitItem.UpdateCountText();
+
+        Inventory.carriedItem = splitItem;
+        splitItem.canvasGroup.blocksRaycasts = false;
     }
 }

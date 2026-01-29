@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] InventorySlot[] equipmentSlots;
 
     [SerializeField] Transform draggablesTransform;
+    public Transform DraggableRoot => draggablesTransform;
     [SerializeField] InventoryItem itemPrefab;
 
     [Header("Item List")]
