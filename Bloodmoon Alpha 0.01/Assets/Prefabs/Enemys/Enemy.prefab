@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8168360983032888707}
   - component: {fileID: 1916790600952287018}
   - component: {fileID: 3242709670840053029}
+  - component: {fileID: -4461248362065670650}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -166,6 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d9c1430c4846c4db908ea1c51ecb37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vision
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &3242709670840053029
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -189,3 +193,30 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.1, z: 0}
+--- !u!205 &-4461248362065670650
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4117378132030884460}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7388242904049665935}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7388242904049665935}
+  - screenRelativeHeight: 0.017106984
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7388242904049665935}
+  m_Enabled: 1
