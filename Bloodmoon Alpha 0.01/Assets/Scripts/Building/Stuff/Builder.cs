@@ -266,26 +266,40 @@ public class Builder : MonoBehaviour
             {
                 if (Mathf.Abs(dir.y) > 0.5f)
                 {
-                    if (dir.y < 0)
+                    if (dir.y > 0)
                     {
                         dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
-                        dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                        dir.y = 4 * Ghoust.transform.localScale.x / 100;
                     }
                     else
                     {
                         dir = hit.transform.forward * -4 * Ghoust.transform.localScale.x / 100;
-                        dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                        dir.y = -4 * Ghoust.transform.localScale.x / 100;
                     }
                 }
                 else
                 {
-                    if (dir.x + dir.z < 0)
+                    if (Mathf.Abs(hit.transform.right.x) > Mathf.Abs(hit.transform.right.z)) // valitse suunta mihin snap tapahtuu
                     {
-                        dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                        if (dir.x > 0)
+                        {
+                            dir = new Vector3(4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                        }
+                        else
+                        {
+                            dir = new Vector3(-4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                        }
                     }
                     else
                     {
-                        dir = hit.transform.right * -4 * Ghoust.transform.localScale.x / 100;
+                        if (dir.z > 0)
+                        {
+                            dir = new Vector3(0, 0, 4 * Ghoust.transform.localScale.x / 100);
+                        }
+                        else
+                        {
+                            dir = new Vector3(0, 0, -4 * Ghoust.transform.localScale.x / 100);
+                        }
                     }
                 }
                 Ghoust.transform.position = hit.transform.position - dir;
@@ -319,9 +333,20 @@ public class Builder : MonoBehaviour
     {
         if (Ghoust.tag != "Wall")
         {
-            Ghoust.transform.Rotate(0, rotat, 0);
+            if (Ghoust.tag == "Stairs" && hit.transform.tag == "Stairs")
+            {
+                if ((rotat / 90) % 2 == 1 && hit.transform.position.y != Ghoust.transform.position.y)
+                {
+                    Ghoust.transform.position -= new Vector3(0, 4 * Ghoust.transform.localScale.x / 100, 0);
+                    Ghoust.transform.Rotate(0,180,0);
+                }
+            }
+            else
+            {
+                Ghoust.transform.Rotate(0, rotat, 0);
+            }
         }
-        else if (rotat != 0 && hit.transform.tag != "Floor")
+        else if (rotat != 0 && hit.transform.tag == "Wall")
         {
             if (rotat == 180)
             {
