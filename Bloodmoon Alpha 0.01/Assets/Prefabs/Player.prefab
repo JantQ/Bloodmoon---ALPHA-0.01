@@ -154,12 +154,11 @@ GameObject:
   - component: {fileID: 7940442512727604363}
   - component: {fileID: 2597826424743788865}
   - component: {fileID: 5634770316470584975}
-  - component: {fileID: 804790548387430392}
   - component: {fileID: 487210184497923490}
   - component: {fileID: 2563249777043237330}
-  - component: {fileID: 4619470843361253705}
   - component: {fileID: 1690818179886973746}
   - component: {fileID: 2656969194359794783}
+  - component: {fileID: 3621242902903596062}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -351,18 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742679123ee7c5342ae0e98768062de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Running
---- !u!114 &804790548387430392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5720249563089100341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742679123ee7c5342ae0e98768062de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Running
 --- !u!114 &487210184497923490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,18 +375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jumping
   isOnGround: 0
---- !u!114 &4619470843361253705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5720249563089100341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c677027687f1ed4bbd9253d4171a3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Looking
 --- !u!114 &1690818179886973746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,3 +417,15 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8840553292419208080}
   m_Enabled: 1
+--- !u!114 &3621242902903596062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720249563089100341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebadf476a1d1cb248aca8ee55a54224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crouching
