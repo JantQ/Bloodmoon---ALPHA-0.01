@@ -46,6 +46,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 153467591
+    locked: 0
+  - name: OVERLAYS
+    uniqueID: 4252265023
+    locked: 0
+  - name: CLOUDS
+    uniqueID: 158909683
+    locked: 0
+  - name: MAP
+    uniqueID: 2916145645
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
