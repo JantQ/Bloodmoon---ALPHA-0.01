@@ -10,6 +10,9 @@ TagManager:
   - Wall
   - Ground
   - Stairs
+  - StairsRight
+  - StairsLeft
+  - StairsLoop
   layers:
   - Default
   - TransparentFX

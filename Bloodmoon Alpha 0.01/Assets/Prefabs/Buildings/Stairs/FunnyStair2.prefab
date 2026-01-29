@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8466927816014535758}
   m_Layer: 0
   m_Name: FunnyStair2
-  m_TagString: Stairs
+  m_TagString: StairsRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

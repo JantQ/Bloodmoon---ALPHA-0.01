@@ -129,7 +129,7 @@ public class Builder : MonoBehaviour
                 target.y += 2 * Ghoust.transform.localScale.x / 100;
                 Ghoust.transform.LookAt(target);
             }
-            else if (Ghoust.tag == "Stairs") 
+            else if (Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop") 
             {
                 Ghoust.transform.rotation = new Quaternion();
                 uplift.y = 2 * Ghoust.transform.localScale.x / 100;
@@ -161,7 +161,7 @@ public class Builder : MonoBehaviour
                 }
                 Ghoust.transform.position = hit.transform.position + dir;
             }
-            else if(Ghoust.tag == "Stairs")
+            else if(Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop")
             {
                 dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
             }
@@ -229,52 +229,118 @@ public class Builder : MonoBehaviour
             Ghoust.transform.rotation = hit.transform.rotation;
             Ghoust.transform.position = hit.transform.position + dir;
         }
-        else if (hit.transform.tag == "Stairs")
+        else if (hit.transform.tag == "Stairs" || hit.transform.tag == "StairsRight" || hit.transform.tag == "StairsLeft" || hit.transform.tag == "StairsLoop")
         {
             Vector3 dir = hit.transform.position - hit.point;
             if (Ghoust.tag == "Floor")
             {
                 if (dir.y < 0)
                 {
-                    dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                    switch (hit.transform.tag)
+                    {
+                        case "StairsLeft":
+                            dir = -hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            Ghoust.transform.Rotate(0, 90, 0);
+                            break;
+                        case "StairsLoop":
+                            dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            break;
+                        case "StairsRight":
+                            dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            Ghoust.transform.Rotate(0, 90, 0);
+                            break;
+                        default:
+                            dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            break;
+                    }
                     dir.y = 2 * Ghoust.transform.localScale.x / 100;
                     Ghoust.transform.position = hit.transform.position + dir;
                 }
                 else
                 {
-                    dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                    dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
                     dir.y = 2 * Ghoust.transform.localScale.x / 100;
                     Ghoust.transform.position = hit.transform.position - dir;
+                    Ghoust.transform.rotation = hit.transform.rotation;
                 }
             }
             else if (Ghoust.tag == "Wall")
             {
                 if (dir.y < 0)
                 {
-                    dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                    switch (hit.transform.tag)
+                    {
+                        case "StairsLeft":
+                            dir = -hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            Ghoust.transform.Rotate(0, 90, 0);
+                            break;
+                        case "StairsLoop":
+                            dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            break;
+                        case "StairsRight":
+                            dir = hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            Ghoust.transform.Rotate(0, 90, 0);
+                            break;
+                        default:
+                            dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            break;
+                    }
                     dir.y = 4 * Ghoust.transform.localScale.x / 100;
                     Ghoust.transform.position = hit.transform.position + dir;
                 }
                 else
                 {
-                    dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                    dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
                     dir.y = 4 * Ghoust.transform.localScale.x / 100;
                     Ghoust.transform.position = hit.transform.position - dir;
+                    Ghoust.transform.rotation = hit.transform.rotation;
                 }
             }
             else
             {
-                if (Mathf.Abs(dir.y) > 0.5f)
+                if (Mathf.Abs(dir.y) > 0.5f || Ghoust.tag != "Stairs")
                 {
-                    if (dir.y > 0)
+                    if (dir.y < 0)
                     {
-                        dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                        switch (hit.transform.tag)
+                        {
+                            case "StairsLeft":
+                                dir = -hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                Ghoust.transform.Rotate(0, -90, 0);
+                                break;
+                            case "StairsLoop":
+                                dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                Ghoust.transform.Rotate(0, 180, 0);
+                                break;
+                            case "StairsRight":
+                                dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                Ghoust.transform.Rotate(0, 90, 0);
+                                break;
+                            default:
+                                dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                break;
+                        }
                         dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position + dir;
                     }
                     else
                     {
                         dir = hit.transform.forward * -4 * Ghoust.transform.localScale.x / 100;
                         dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.rotation = hit.transform.rotation;
+                        Ghoust.transform.position = hit.transform.position + dir;
                     }
                 }
                 else
@@ -301,10 +367,10 @@ public class Builder : MonoBehaviour
                             dir = new Vector3(0, 0, -4 * Ghoust.transform.localScale.x / 100);
                         }
                     }
+                    Ghoust.transform.rotation = hit.transform.rotation;
+                    Ghoust.transform.position = hit.transform.position - dir;
                 }
-                Ghoust.transform.position = hit.transform.position - dir;
             }
-            Ghoust.transform.rotation = hit.transform.rotation;
         }
         else // mikäli et osu mihinkään mihin snap toimii, laita mihin ray osoittaa
         {
