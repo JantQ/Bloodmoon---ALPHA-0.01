@@ -1,6 +1,7 @@
 using Mono.Cecil.Cil;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -74,7 +75,8 @@ public class Builder : MonoBehaviour
             bool can = Valid();
             if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
-                Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
+                GameObject builded= Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
+                transform.GetComponent<NavMeshSurface>().BuildNavMesh();
                 rotat = 0;
             }
         }

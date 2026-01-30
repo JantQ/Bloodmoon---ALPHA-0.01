@@ -280,6 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 842924858}
   - component: {fileID: 842924857}
+  - component: {fileID: 842924859}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Untagged
@@ -342,6 +343,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &842924859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842924856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 1
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1001 &893140935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -912,18 +945,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1343258365155122965, guid: bdf6447d0972c3d43b9b797bc73509df, type: 3}
-      propertyPath: m_VoxelSize
-      value: 0.16666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343258365155122965, guid: bdf6447d0972c3d43b9b797bc73509df, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: d2a9e75d0a9f8bd4b86f6f6d09c2ee26, type: 2}
-    - target: {fileID: 1343258365155122965, guid: bdf6447d0972c3d43b9b797bc73509df, type: 3}
-      propertyPath: m_CollectObjects
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3746452270437307107, guid: bdf6447d0972c3d43b9b797bc73509df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.08584
@@ -1216,6 +1237,18 @@ PrefabInstance:
     - target: {fileID: 1058633913730187024, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505329303381329333, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: b65b1baca5210034fb4b23e7cc946625, type: 2}
+    - target: {fileID: 1505329303381329333, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
+      propertyPath: m_GenerateLinks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505329303381329333, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
+      propertyPath: m_CollectObjects
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3259542791121592523, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,18 +1645,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_VoxelSize
-      value: 0.16666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 764d1c944a35c034fb78d69ee51277c8, type: 2}
-    - target: {fileID: 0}
-      propertyPath: m_CollectObjects
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5271169332701704351, guid: 30f753c11745c174b9968252e256b507, type: 3}
       propertyPath: m_Name
       value: Ramp
