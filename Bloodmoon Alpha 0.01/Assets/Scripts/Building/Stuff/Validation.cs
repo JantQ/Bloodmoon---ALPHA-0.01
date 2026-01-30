@@ -2,18 +2,22 @@ using UnityEngine;
 
 public class Validation : MonoBehaviour
 {
-    public bool IsValid(LayerMask mask)
+    public bool valid = false;
+    bool coliding = false;
+    private void Update()
     {
-        Vector3 start = transform.position + (transform.localScale / 2);
-        Vector3 direction = (transform.position - start) * 2;
-        Debug.DrawRay(start, direction, Color.rebeccaPurple, 10000f);
-        Physics.Raycast(start, direction, out RaycastHit hit, 100000f, mask);//Se ei toimi rotaation kanssa koska me katsomme vääriä tietoja.
-
-        start.x -= transform.localScale.x;
-        direction = (transform.position - start) * 2;
-        Debug.DrawRay(start, direction, Color.rebeccaPurple, 10000f);
-        Physics.Raycast(start, direction, out RaycastHit hit2, 100000f, mask);//ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ!
-
-        return true;
+        if (!coliding)
+        {
+            valid = true;
+        }
+        coliding = false;
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag != "Ground")
+        {
+            valid = false;
+            coliding = true;
+        }
     }
 }

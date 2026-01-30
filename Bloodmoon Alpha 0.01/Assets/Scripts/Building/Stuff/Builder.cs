@@ -50,12 +50,11 @@ public class Builder : MonoBehaviour
             {
                 Ghoust = Instantiate(buildings[build]);
                 Ghoust.GetComponentInChildren<Renderer>().material = valid;
-                MeshCollider[] box = Ghoust.GetComponentsInChildren<MeshCollider>();
-                for (int i = 0; i < box.Length; ++i)
-                {
-                    box[i].enabled = false;
-                }
-                box[0].transform.AddComponent<Validation>();
+                Ghoust.layer = LayerMask.NameToLayer("Ghoust");
+                Ghoust.GetComponent<MeshCollider>().enabled = false;
+                Ghoust.AddComponent<BoxCollider>().size /= 1.1f;
+                Ghoust.AddComponent<Validation>();
+                Ghoust.AddComponent<Rigidbody>();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -72,7 +71,8 @@ public class Builder : MonoBehaviour
                 Ghoust.SetActive(true);
             }
             else { Ghoust.SetActive(false); }
-            if (Ghoust.active && Input.GetMouseButtonDown(0) && Valid()) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
+            bool can = Valid();
+            if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
                 Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
                 rotat = 0;
@@ -381,10 +381,9 @@ public class Builder : MonoBehaviour
 
     private bool Valid()
     {
-        return true;
         Validation val = Ghoust.GetComponentInChildren<Validation>();
-        bool valid_bool= val.IsValid(mask);
-        if (true)
+        bool valid_bool = val.valid;
+        if (valid_bool)
         {
             val.transform.GetComponent<Renderer>().material = valid;
         }
@@ -392,7 +391,7 @@ public class Builder : MonoBehaviour
         {
             val.transform.GetComponent<Renderer>().material = invalid;
         }
-        return true;
+        return valid_bool;
     }
 
     private void SpinMeRightRound(RaycastHit hit)
