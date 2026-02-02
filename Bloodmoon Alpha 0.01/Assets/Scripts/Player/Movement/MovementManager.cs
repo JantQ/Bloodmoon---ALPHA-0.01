@@ -14,6 +14,7 @@ public class MovementManager : MonoBehaviour
     private Looking look;
     private Camera camera;
     private Jumping jump;
+    private Crouching crouching;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class MovementManager : MonoBehaviour
         run = GetComponent<Running>();
         look = GetComponent<Looking>();
         camera = GetComponentInChildren<Camera>();
+        crouching = GetComponent<Crouching>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -30,6 +32,7 @@ public class MovementManager : MonoBehaviour
     {
         jump.Jump(jumpPower);
         speedMultiplier = run.run();
+        speedMultiplier = crouching.crouch(speedMultiplier);
         move.Move(moveSpeed * speedMultiplier);
         look.Look(sensitivity, camera.transform);
     }

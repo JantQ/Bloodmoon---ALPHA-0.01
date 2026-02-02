@@ -1,0 +1,110 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Inventory : MonoBehaviour
+{
+    public static Inventory Singleton;
+    public static InventoryItem carriedItem;
+
+    [SerializeField] InventorySlot[] inventorySlots;
+    [SerializeField] InventorySlot[] hotbarSlots;
+
+    [SerializeField] InventorySlot[] equipmentSlots;
+
+    [SerializeField] Transform draggablesTransform;
+    public Transform DraggableRoot => draggablesTransform;
+    [SerializeField] InventoryItem itemPrefab;
+
+    [Header("Item List")]
+    [SerializeField] Item[] items;
+
+    [Header("Debug")]
+    [SerializeField] Button giveItemBtn;
+
+    private void Awake()
+    {
+        Singleton = this;
+        giveItemBtn.onClick.AddListener(() => SpawnInventoryItem());
+    }
+
+    private void Update()
+    {
+        if (carriedItem != null)
+            carriedItem.transform.position = Input.mousePosition;
+    }
+
+    public void SetCarriedItem(InventoryItem item)
+    {
+        if (carriedItem != null)
+        {
+            if (item.activeSlot.myTag != SlotTag.None && item.activeSlot.myTag != carriedItem.myItem.itemTag) return;
+            item.activeSlot.SetItem(carriedItem);
+        }
+
+        if (item.activeSlot.myTag != SlotTag.None)
+            EquipEquipment(item.activeSlot.myTag, null);
+
+        carriedItem = item;
+        carriedItem.canvasGroup.blocksRaycasts = false;
+        item.transform.SetParent(draggablesTransform);
+    }
+
+    public void EquipEquipment(SlotTag tag, InventoryItem item = null)
+    {
+        switch (tag)
+        {
+            case SlotTag.Head:
+                if (item == null)
+                    Debug.Log("Unequipped helmet on " + tag);
+                else
+                    Debug.Log("Equipped " + item.myItem.name + " on " + tag);
+                break;
+            case SlotTag.Chest: break;
+            case SlotTag.Legs: break;
+            case SlotTag.Feet: break;
+        }
+    }
+
+    public void SpawnInventoryItem(Item item = null)
+    {
+        Item _item = item ?? PickRandomItem();
+
+        // Merge stackable items if possible
+        if (_item.itemTag == SlotTag.Stackable)
+        {
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.myItem != null && slot.myItem.myItem == _item)
+                {
+                    int maxStack = 64;
+                    int spaceLeft = maxStack - slot.myItem.count;
+
+                    if (spaceLeft > 0)
+                    {
+                        slot.myItem.AddStack(1);
+                        return; // merged successfully
+                    }
+                }
+            }
+        }
+
+        // Otherwise, spawn in an empty slot
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].myItem == null)
+            {
+                InventoryItem newItem = Instantiate(itemPrefab, inventorySlots[i].transform);
+                newItem.Initialize(_item, inventorySlots[i]);
+                break;
+            }
+        }
+    }
+
+    private Item PickRandomItem()
+    {
+        int random = Random.Range(0, items.Length);
+        return items[random];
+    }
+}
