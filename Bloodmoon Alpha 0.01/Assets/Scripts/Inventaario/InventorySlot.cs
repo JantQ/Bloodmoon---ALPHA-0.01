@@ -19,7 +19,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         // If slot has the same stackable item, combine stacks
         if (myItem != null && myItem.myItem.itemTag == SlotTag.Stackable &&
-            myItem.myItem == item.myItem)
+            myItem.myItem == item.myItem && transform.childCount > 0)
         {
             int total = myItem.count + item.count;
             int maxStack = 100;

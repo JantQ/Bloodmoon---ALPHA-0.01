@@ -82,6 +82,8 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         InventoryItem splitItem =
             Instantiate(this, Inventory.Singleton.DraggableRoot);
 
+        splitItem.myItem = this.myItem;
+
         splitItem.activeSlot = null;
         splitItem.count = half;
         splitItem.UpdateCountText();
