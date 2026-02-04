@@ -29,6 +29,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         // STACKING
         if (itemInThisSlot != null &&
+             itemInThisSlot != item &&
             itemInThisSlot.myItem.itemTag == SlotTag.Stackable &&
             itemInThisSlot.myItem == item.myItem)
         {
