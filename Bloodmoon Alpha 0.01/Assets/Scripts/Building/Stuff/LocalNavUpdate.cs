@@ -16,22 +16,13 @@ public class LocalNavUpdate : MonoBehaviour
     {
         bounds = new Bounds(new Vector3(0, 0, 0), new Vector3(worldSize, 1000, worldSize));
         buildSettings = GetComponent<NavMeshSurface>().GetBuildSettings();
+        navMeshData = GetComponent<NavMeshSurface>().navMeshData;
+        NavUpdate();
     }
 
-    private void Update()
+    public void NavUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sourse);
-            Debug.Log(sourse.Count);
-        }
-        if (sourse != null)
-        {
-            NavMeshUpdate();
-        }
-    }
-    private void NavMeshUpdate()
-    {
+        NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sourse);
         NavMeshBuilder.UpdateNavMeshData(navMeshData, buildSettings, sourse, bounds);
     }
 }

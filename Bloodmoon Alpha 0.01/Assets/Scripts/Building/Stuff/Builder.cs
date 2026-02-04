@@ -33,6 +33,8 @@ public class Builder : MonoBehaviour
 
     public int rotat = 0;
 
+    public LocalNavUpdate update;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B)) // Togle building mode
@@ -75,6 +77,10 @@ public class Builder : MonoBehaviour
             if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
                 Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
+                if (Ghoust.tag != "Wall")
+                {
+                    update.NavUpdate();
+                }
                 rotat = 0;
             }
         }

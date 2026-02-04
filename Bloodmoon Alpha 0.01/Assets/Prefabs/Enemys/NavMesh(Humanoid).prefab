@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3259542791121592523}
   - component: {fileID: 1505329303381329333}
+  - component: {fileID: 7347065341681905058}
+  - component: {fileID: 4327830325089259770}
   m_Layer: 0
   m_Name: NavMesh(Humanoid)
   m_TagString: Untagged
@@ -62,5 +64,35 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: cf595cac5d4d6f448bcd3c77425b7d01, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7831e80e0d7bd7e4891d701e4212bded, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &7347065341681905058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058633913730187024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe7aefd2b463f1429115ad1ac9ee574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Validation
+  valid: 0
+--- !u!114 &4327830325089259770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058633913730187024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5ed23e4e476af4f8ce2eb3de6b6896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalNavUpdate
+  navMeshData: {fileID: 0}
+  worldSize: 100
+  mask:
+    serializedVersion: 2
+    m_Bits: 2147483703
