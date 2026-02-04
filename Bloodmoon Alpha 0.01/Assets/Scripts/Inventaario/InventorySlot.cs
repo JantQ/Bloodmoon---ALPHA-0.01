@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,51 +8,74 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public SlotTag myTag;
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (Inventory.carriedItem == null) return;
-            if (myTag != SlotTag.None && Inventory.carriedItem.myItem.itemTag != myTag) return;
-            SetItem(Inventory.carriedItem);
-        }
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        // No carried item → nothing to place
+        if (Inventory.carriedItem == null)
+            return;
+
+        // Slot tag restriction (equipment slots, etc.)
+        if (myTag != SlotTag.None &&
+            Inventory.carriedItem.myItem.itemTag != myTag)
+            return;
+
+        SetItem(Inventory.carriedItem);
     }
     public void SetItem(InventoryItem item)
     {
-        // If slot has the same stackable item, combine stacks
-        if (myItem != null && myItem.myItem.itemTag == SlotTag.Stackable &&
-            myItem.myItem == item.myItem && transform.childCount > 0)
+        InventorySlot fromSlot = item.activeSlot;
+        InventoryItem itemInThisSlot = myItem;
+
+        // STACKING
+        if (itemInThisSlot != null &&
+            itemInThisSlot.myItem.itemTag == SlotTag.Stackable &&
+            itemInThisSlot.myItem == item.myItem)
         {
-            int total = myItem.count + item.count;
+            int total = itemInThisSlot.count + item.count;
             int maxStack = 100;
 
             if (total <= maxStack)
             {
-                myItem.AddStack(item.count);
-                Destroy(item.gameObject); // merged into existing stack
+                itemInThisSlot.AddStack(item.count);
+                Destroy(item.gameObject);
+                Inventory.carriedItem = null;
             }
             else
             {
-                myItem.count = maxStack;
-                myItem.UpdateCountText();
-                item.count = total - maxStack; // remaining items stay in carriedItem
+                itemInThisSlot.count = maxStack;
+                itemInThisSlot.UpdateCountText();
+                item.count = total - maxStack;
                 item.UpdateCountText();
-                Inventory.carriedItem = item; // still carrying leftover
             }
             return;
         }
 
-        // Move item normally
-        Inventory.carriedItem = null;
-        if (item.activeSlot != null)
-            item.activeSlot.myItem = null;
+        // PLACE / SWAP LOGIC
 
+        // Put carried item into this slot
         myItem = item;
-        myItem.activeSlot = this;
-        myItem.transform.SetParent(transform);
-        myItem.canvasGroup.blocksRaycasts = true;
+        item.activeSlot = this;
+        item.transform.SetParent(transform);
+        item.canvasGroup.blocksRaycasts = true;
+
+        // If item came from a slot
+        if (fromSlot != null)
+        {
+            // Swap back the previous item (if any)
+            fromSlot.myItem = itemInThisSlot;
+
+            if (itemInThisSlot != null)
+            {
+                itemInThisSlot.activeSlot = fromSlot;
+                itemInThisSlot.transform.SetParent(fromSlot.transform);
+                itemInThisSlot.canvasGroup.blocksRaycasts = true;
+            }
+        }
+
+        Inventory.carriedItem = null;
 
         if (myTag != SlotTag.None)
-        {
             Inventory.Singleton.EquipEquipment(myTag, myItem);
-        }
     }
 }
