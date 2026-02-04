@@ -2,13 +2,29 @@ using UnityEngine;
 
 public class Running : MonoBehaviour
 {
-    public float run()     
+    private Animator animator;
+
+    void Awake()
     {
-        float speedMultiplier = 1f;
-        if (Input.GetKey(KeyCode.LeftShift))
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    public float run()
+    {
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float speedMultiplier = isRunning ? 2.5f : 1f;
+
+        if (animator != null)
         {
-            speedMultiplier = 2.5f;
+            animator.SetBool("IsRunning", isRunning);
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            animator.SetBool("IsRunning", false);
+        }
+
         return speedMultiplier;
     }
+
 }

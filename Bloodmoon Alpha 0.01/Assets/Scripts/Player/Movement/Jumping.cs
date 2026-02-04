@@ -2,29 +2,57 @@ using UnityEngine;
 
 public class Jumping : MonoBehaviour
 {
-    Rigidbody rb;
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private Rigidbody rb;
     public bool isOnGround = false;
+    private bool isJumping = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        isJumping = false;
     }
 
-    public void OnTriggerStay(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = true;
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        isOnGround = false;
-    }
-
-    public void Jump (float jumpPower)
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            rb.AddForce(Vector3.up * jumpPower);
+            isOnGround = true;
+
+            if (animator != null)
+                animator.SetBool("IsGrounded", true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = false;
+
+            if (animator != null)
+                animator.SetBool("IsGrounded", false);
+        }
+    }
+
+
+    public void Jump(float jumpPower)
+    {
+        if (!isOnGround) return;
+
+        isOnGround = false;
+
+        rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+
+        if (animator != null)
+        {
+            animator.SetTrigger("IsJumping");
         }
     }
 }
