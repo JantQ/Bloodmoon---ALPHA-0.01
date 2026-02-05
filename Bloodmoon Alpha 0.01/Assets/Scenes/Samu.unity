@@ -234,37 +234,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89339261}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &143529215
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 143529216}
-  m_Layer: 0
-  m_Name: HandSocket
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &143529216
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143529215}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -1.55, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 758664102}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &205715329
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,42 +778,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7186393721144090304, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 5989721449283381053}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7838319249959642443, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 143529216}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5720249563089100341, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 758664104}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
---- !u!4 &758664102 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7838319249959642443, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
-  m_PrefabInstance: {fileID: 758664101}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &758664103 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5720249563089100341, guid: b1efdf277bc2fbe488cd9553bd8939a2, type: 3}
-  m_PrefabInstance: {fileID: 758664101}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &758664104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758664103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafc803de2df64e4e84972f46d504fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHotbarController
-  inventory: {fileID: 5989721449283381053}
-  handSocket: {fileID: 143529216}
-  selectedIndex: 0
 --- !u!1 &774832292
 GameObject:
   m_ObjectHideFlags: 0
