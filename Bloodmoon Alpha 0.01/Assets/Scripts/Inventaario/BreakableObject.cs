@@ -4,7 +4,7 @@ public class BreakableObject : MonoBehaviour
 {
     [Header("Stats")]
     public int maxHealth = 5;
-    private int currentHealth;
+    public int currentHealth = 5;
 
     [Header("Drops")]
     public Item dropItem;          // ScriptableObject (Wood, Stone, etc.)
@@ -15,10 +15,6 @@ public class BreakableObject : MonoBehaviour
     public GameObject worldItemPrefab; // Prefab with WorldItemPickup
     public float dropRadius = 0.5f;
 
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-    }
 
     public void TakeDamage(int damage)
     {
