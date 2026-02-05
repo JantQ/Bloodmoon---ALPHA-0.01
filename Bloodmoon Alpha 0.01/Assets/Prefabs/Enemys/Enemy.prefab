@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3242709670840053029}
   - component: {fileID: -4461248362065670650}
   m_Layer: 3
+  - component: {fileID: 777540850301843777}
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -193,7 +194,7 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.1, z: 0}
---- !u!205 &-4461248362065670650
+--- !u!205 &777540850301843777
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,16 +208,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.047928594
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 7388242904049665935}
-  - screenRelativeHeight: 0.3
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 7388242904049665935}
-  - screenRelativeHeight: 0.017106984
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 7388242904049665935}
+    renderers: []
   m_Enabled: 1
