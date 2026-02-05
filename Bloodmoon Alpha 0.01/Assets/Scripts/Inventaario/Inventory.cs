@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
     [Header("Debug")]
     [SerializeField] Button giveItemBtn;
 
+
     private void Awake()
     {
         Singleton = this;
@@ -106,5 +107,14 @@ public class Inventory : MonoBehaviour
     {
         int random = Random.Range(0, items.Length);
         return items[random];
+    }
+    public int HotbarCount => hotbarSlots.Length;
+
+    public InventorySlot GetHotbarSlot(int index)
+    {
+        if (index < 0 || index >= hotbarSlots.Length)
+            return null;
+
+        return hotbarSlots[index];
     }
 }
