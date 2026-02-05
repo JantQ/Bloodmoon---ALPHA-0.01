@@ -77,10 +77,7 @@ public class Builder : MonoBehaviour
             if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
                 Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
-                if (Ghoust.tag != "Wall")
-                {
-                    update.NavUpdate();
-                }
+                update.NavUpdate();
                 rotat = 0;
             }
         }

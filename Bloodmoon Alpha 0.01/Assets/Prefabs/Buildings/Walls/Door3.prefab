@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8155097932349041070}
   - component: {fileID: 341185759202261593}
   - component: {fileID: 9171161908252600309}
-  - component: {fileID: 8286312062914273220}
   m_Layer: 0
   m_Name: Door3
   m_TagString: Wall
@@ -32,8 +31,7 @@ Transform:
   m_LocalPosition: {x: -3.54, y: 6.11891, z: 9.98528}
   m_LocalScale: {x: 68, y: 68, z: 68}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 338767710829474344}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8155097932349041070
@@ -115,67 +113,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3861202813800034234, guid: 5b352ad02a4839d43ab945cdd602ab4c, type: 3}
---- !u!208 &8286312062914273220
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4348215961839368542}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.01, y: 0.020000001, z: 0.001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.01, y: 0, z: 0}
-  m_TimeToStationary: 0.5
---- !u!1 &7998296706593041896
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 338767710829474344}
-  - component: {fileID: 4211766159463285066}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &338767710829474344
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7998296706593041896}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2648360839748499338}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &4211766159463285066
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7998296706593041896}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.01, y: 0.005, z: 0.001}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.01, y: 0.015, z: 0}
-  m_TimeToStationary: 0.5

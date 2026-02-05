@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5548485919482712277}
   - component: {fileID: 1029327041566189634}
   - component: {fileID: 5942985104350092117}
-  - component: {fileID: -8389508944287614887}
   m_Layer: 0
   m_Name: Window
   m_TagString: Wall
@@ -114,19 +113,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1049928748687988745, guid: 21af0d82a1869004d9db829181414eb8, type: 3}
---- !u!208 &-8389508944287614887
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079360047053020274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.020000001, y: 0.020000001, z: 0.001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
