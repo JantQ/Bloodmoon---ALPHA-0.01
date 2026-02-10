@@ -7,15 +7,18 @@ using UnityEngine;
 public class SaveChildren : MonoBehaviour
 {
     // Update is called once per frame
+    bool loaded = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) 
+        if (Input.GetKeyDown(KeyCode.L))
         {
             SaveSystem.Save();
+            loaded = true;
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !loaded)
         {
             SaveSystem.Load();
+            loaded = true;
         }
     }
 
