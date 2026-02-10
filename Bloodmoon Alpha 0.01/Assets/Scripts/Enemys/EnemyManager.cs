@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Character");
         Enemys = GetComponentsInChildren<EnemyUpdate>();
     }
 

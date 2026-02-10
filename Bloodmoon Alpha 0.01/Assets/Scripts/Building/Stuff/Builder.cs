@@ -66,6 +66,7 @@ public class Builder : MonoBehaviour
                     rotat = 0;
                 }
             }
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 50);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
                 Snap(hit);

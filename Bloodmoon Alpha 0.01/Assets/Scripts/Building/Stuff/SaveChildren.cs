@@ -6,12 +6,6 @@ using UnityEngine;
 
 public class SaveChildren : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,37 +23,48 @@ public class SaveChildren : MonoBehaviour
     {
         if (transform.childCount > 0)
         {
-            data.Components = new List<string>();
+            data.names = new List<string>();
             Transform[] trans = transform.GetComponentsInChildren<Transform>();
+            data.locations = new List<Vector3>();
+            data.rotations = new List<Quaternion>();
+            data.scale = new List<Vector3>();
             for (int i = 0; trans.Length > i; i++)
             {
-                data.locations.add(trans[i]);
+                data.locations.Add(trans[i].position);
+                data.rotations.Add(trans[i].rotation);
+                data.scale.Add(trans[i].localScale);
             }
             Debug.Log(Convert.ToString(trans.Count()));
             for (int i = 0; trans.Length > i; i++)
             {
-                data.Components.Add("");
-                foreach (Component comp in transform)
-                {
-                    string dat = comp.name;
-                    data.Components[i] = dat;
-                }
-                Debug.Log(data.Components[i].Length);
+                data.names.Add(trans[i].name);
             }
-            Debug.Log(data.Components.Count);
         }
     }
 
     public void Load(ChildSaveData data)
     {
+        GameObject builder = GameObject.Find("builder");
+        for (int i = 0; data.names.Count > i; i++)
+        {
+            for (int x = 0; x < builder.GetComponent<Builder>().buildings.Count; x++)
+            {
+                if (builder.GetComponent<Builder>().buildings[x].name + "(Clone)" == data.names[i])
+                {
+                    Transform trans;
+                    trans = new Transform();
+                    trans.position = data.locations[i];
 
+                }
+            }
+        }
     }
 }
 [System.Serializable]
 public struct ChildSaveData
 {
     public List<Vector3> locations;
-    public List<Vector3> rotations;
+    public List<Quaternion> rotations;
     public List<Vector3> scale;
-    public List<string> Components;
+    public List<string> names;
 }
