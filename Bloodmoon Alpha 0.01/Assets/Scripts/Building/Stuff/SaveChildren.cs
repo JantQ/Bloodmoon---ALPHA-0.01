@@ -44,17 +44,14 @@ public class SaveChildren : MonoBehaviour
 
     public void Load(ChildSaveData data)
     {
-        GameObject builder = GameObject.Find("builder");
+        GameObject builder = GameObject.Find("Builder");
         for (int i = 0; data.names.Count > i; i++)
         {
             for (int x = 0; x < builder.GetComponent<Builder>().buildings.Count; x++)
             {
                 if (builder.GetComponent<Builder>().buildings[x].name + "(Clone)" == data.names[i])
                 {
-                    Transform trans;
-                    trans = new Transform();
-                    trans.position = data.locations[i];
-
+                    Instantiate(builder.GetComponent<Builder>().buildings[x], data.locations[x], data.rotations[x], transform);
                 }
             }
         }
