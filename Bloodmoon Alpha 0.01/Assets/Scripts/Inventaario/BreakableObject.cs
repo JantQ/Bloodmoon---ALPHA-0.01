@@ -6,24 +6,23 @@ public class BreakableObject : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth = 5;
 
+    [Header("Break Settings")]
+    public BreakType breakType;
+
     [Header("Drops")]
-    public Item dropItem;          // ScriptableObject (Wood, Stone, etc.)
+    public Item dropItem;
     public int minDrops = 1;
     public int maxDrops = 3;
 
-    [Header("Drop Settings")]
-    public GameObject worldItemPrefab; // Prefab with WorldItemPickup
+    public GameObject worldItemPrefab;
     public float dropRadius = 0.5f;
-
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         if (currentHealth <= 0)
-        {
             Break();
-        }
     }
 
     private void Break()
@@ -41,8 +40,7 @@ public class BreakableObject : MonoBehaviour
                 Quaternion.identity
             );
 
-            WorldItemPickup pickup = drop.GetComponent<WorldItemPickup>();
-            pickup.item = dropItem;
+            drop.GetComponent<WorldItemPickup>().item = dropItem;
         }
 
         Destroy(gameObject);

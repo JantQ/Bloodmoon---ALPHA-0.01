@@ -11,6 +11,9 @@ public class Item : ScriptableObject
     public Sprite sprite;
     public SlotTag itemTag;
 
-    [Header("If the item can be equipped")]
+    [Header("Equipment")]
     public GameObject equipmentPrefab;
+
+    [Header("Tool Settings")]
+    public ToolType toolType;
 }

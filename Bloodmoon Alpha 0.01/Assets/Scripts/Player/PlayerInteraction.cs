@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Handles player interactions with breakable objects (trees, rocks, etc.)
@@ -22,9 +22,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         Item equipped = PlayerHotbarController.Instance.GetEquippedItem();
 
-        // Must have an axe equipped
-        if (equipped == null || equipped.equipmentPrefab == null)
+        if (equipped == null)
+        {
+            Debug.Log("No equipped item");
             return;
+        }
+
+        Debug.Log("Equipped tool: " + equipped.toolType);
 
         Ray ray = new Ray(
             Camera.main.transform.position,
@@ -36,10 +40,32 @@ public class PlayerInteraction : MonoBehaviour
             BreakableObject breakable =
                 hit.collider.GetComponentInParent<BreakableObject>();
 
-            if (breakable != null)
+            if (breakable == null)
             {
-                breakable.TakeDamage(damage);
+                Debug.Log("Hit non-breakable");
+                return;
             }
+
+            Debug.Log("Hit breakable: " + breakable.breakType);
+
+            if (!CanBreak(equipped.toolType, breakable.breakType))
+            {
+                Debug.Log("Wrong tool for this target");
+                return;
+            }
+
+            breakable.TakeDamage(damage);
         }
+    }
+
+    bool CanBreak(ToolType tool, BreakType target)
+    {
+        if (tool == ToolType.Axe && target == BreakType.Tree)
+            return true;
+
+        if (tool == ToolType.Pickaxe && target == BreakType.Stone)
+            return true;
+
+        return false;
     }
 }
