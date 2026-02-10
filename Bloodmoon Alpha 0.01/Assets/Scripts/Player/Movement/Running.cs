@@ -24,6 +24,11 @@ public class Running : MonoBehaviour
             animator.SetBool("IsRunning", false);
         }
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            isRunning = false;
+        }
+
         return speedMultiplier;
     }
 

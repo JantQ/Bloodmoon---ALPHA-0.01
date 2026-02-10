@@ -54,6 +54,11 @@ public class Walking : MonoBehaviour
             isWalking = false;
         }
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            isWalking = false;
+        }
+
         animator.SetBool("IsWalking", isWalking);
     }
 }

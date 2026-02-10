@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class DrawWeapon : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    Animator animator;
+    bool weaponDrawn = false;
+
+    void Awake()
     {
-        
+        animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void drawWeapon()
     {
-        
+        if (!weaponDrawn && Input.GetKey(KeyCode.R)) 
+        {
+            animator.SetTrigger("DrawWeapon");
+            weaponDrawn = true; 
+        }
     }
 }

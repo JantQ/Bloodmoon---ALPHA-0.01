@@ -54,5 +54,10 @@ public class Jumping : MonoBehaviour
         {
             animator.SetTrigger("IsJumping");
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            isJumping = false;
+        }
     }
 }
