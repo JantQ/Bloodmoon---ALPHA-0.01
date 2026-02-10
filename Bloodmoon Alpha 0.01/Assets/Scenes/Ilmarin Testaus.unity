@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9ae681f9b8a7d3468376e3a2fd7fe6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PerformanseTester
-  numbers: 10
+  numbers: 0
   enemy: {fileID: 4117378132030884460, guid: e68f7cb990aba80478301b1909d54280, type: 3}
 --- !u!1001 &893140935
 PrefabInstance:
@@ -358,23 +358,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1120006699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8015971508887585505, guid: e25d04caf2fe5994d98d2fde08b9cfda, type: 3}
-  m_PrefabInstance: {fileID: 962493293988391254}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1120006700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120006699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43f9872b0f77b78469037797e78b4270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveChildren
 --- !u!1 &1247707870
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,10 +834,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8015971508887585505, guid: e25d04caf2fe5994d98d2fde08b9cfda, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1120006700}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e25d04caf2fe5994d98d2fde08b9cfda, type: 3}
 --- !u!1001 &1719628421026367248
 PrefabInstance:
