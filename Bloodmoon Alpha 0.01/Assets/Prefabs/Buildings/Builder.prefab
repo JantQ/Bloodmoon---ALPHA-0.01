@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4241386921341937146}
   - component: {fileID: 9055824944912316176}
+  - component: {fileID: 6833737170043693406}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Untagged
@@ -72,3 +73,16 @@ MonoBehaviour:
     m_Bits: 55
   build: 1
   rotat: 0
+  update: {fileID: 0}
+--- !u!114 &6833737170043693406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015971508887585505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f9872b0f77b78469037797e78b4270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveChildren

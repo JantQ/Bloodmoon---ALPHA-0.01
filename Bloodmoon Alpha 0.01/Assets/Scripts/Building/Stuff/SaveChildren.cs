@@ -47,12 +47,22 @@ public class SaveChildren : MonoBehaviour
         GameObject builder = GameObject.Find("Builder");
         for (int i = 0; data.names.Count > i; i++)
         {
+            bool found = false;
             for (int x = 0; x < builder.GetComponent<Builder>().buildings.Count; x++)
             {
                 if (builder.GetComponent<Builder>().buildings[x].name + "(Clone)" == data.names[i])
                 {
-                    Instantiate(builder.GetComponent<Builder>().buildings[x], data.locations[x], data.rotations[x], transform);
+                    found = true;
+                    bool work = Instantiate(builder.GetComponent<Builder>().buildings[x], data.locations[x], data.rotations[x], transform);
+                    if (!work)
+                    {
+                        Debug.Log("load " + i + " Faild");
+                    }
                 }
+            }
+            if (!found)
+            {
+                Debug.Log("Object " + i + " not found");
             }
         }
     }
