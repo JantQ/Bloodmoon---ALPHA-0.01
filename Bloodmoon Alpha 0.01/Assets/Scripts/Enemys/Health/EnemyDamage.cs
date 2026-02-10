@@ -7,12 +7,12 @@ public class EnemyDamage : MonoBehaviour
 
     float lastAttackTime;
 
-    void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         if (Time.time < lastAttackTime + attackCooldown)
             return;
 
-        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+        PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
 
         if (playerHealth != null)
         {
@@ -20,4 +20,5 @@ public class EnemyDamage : MonoBehaviour
             lastAttackTime = Time.time;
         }
     }
+
 }

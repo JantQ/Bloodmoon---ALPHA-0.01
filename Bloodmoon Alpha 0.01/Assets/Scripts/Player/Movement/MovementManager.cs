@@ -30,7 +30,11 @@ public class MovementManager : MonoBehaviour
 
     void Update()
     {
-        jump.Jump(jumpPower);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jump.Jump(jumpPower);
+        }
+
         speedMultiplier = run.run();
         speedMultiplier = crouching.crouch(speedMultiplier);
         move.Move(moveSpeed * speedMultiplier);
