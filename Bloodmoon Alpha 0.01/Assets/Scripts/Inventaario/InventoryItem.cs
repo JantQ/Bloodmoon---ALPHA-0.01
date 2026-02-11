@@ -98,6 +98,12 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         if (activeSlot != null)
         {
             activeSlot.SetItem(this);
+            // activeSlot will now reference this item, no problem
+        }
+        else
+        {
+            // If dropped outside, make sure no slot is referencing it
+            activeSlot?.ClearSlot();
         }
     }
 }

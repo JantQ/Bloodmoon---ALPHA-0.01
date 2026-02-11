@@ -109,4 +109,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         SetItem(droppedItem);
     }
+    public void ClearSlot()
+    {
+        myItem = null;
+    }
 }
