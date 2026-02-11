@@ -91,4 +91,13 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         Inventory.carriedItem = splitItem;
         splitItem.canvasGroup.blocksRaycasts = false;
     }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.blocksRaycasts = true;
+
+        if (activeSlot != null)
+        {
+            activeSlot.SetItem(this);
+        }
+    }
 }

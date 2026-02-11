@@ -24,6 +24,20 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     }
     public void SetItem(InventoryItem item)
     {
+        myItem = item;
+
+        item.transform.SetParent(transform, false);
+
+        RectTransform rt = item.GetComponent<RectTransform>();
+
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero;
+        rt.offsetMax = Vector2.zero;
+
+        rt.localScale = Vector3.one;
+
+        item.activeSlot = this;
         InventorySlot fromSlot = item.activeSlot;
         InventoryItem itemInThisSlot = myItem;
 
@@ -78,5 +92,21 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         if (myTag != SlotTag.None)
             Inventory.Singleton.EquipEquipment(myTag, myItem);
+    }
+    public void OnDrop(PointerEventData eventData)
+    {
+        InventoryItem droppedItem =
+            eventData.pointerDrag.GetComponent<InventoryItem>();
+
+        if (droppedItem == null)
+            return;
+
+        if (myItem != null)
+        {
+            // Swap
+            droppedItem.activeSlot.SetItem(myItem);
+        }
+
+        SetItem(droppedItem);
     }
 }
