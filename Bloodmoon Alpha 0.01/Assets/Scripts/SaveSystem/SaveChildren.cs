@@ -61,7 +61,7 @@ public class SaveChildren : MonoBehaviour
                     }
                 }
             }
-            if (!found)
+            if (!found && i != 0)
             {
                 Debug.Log("Object " + i + " not found");
             }
