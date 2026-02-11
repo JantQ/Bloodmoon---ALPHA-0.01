@@ -54,7 +54,7 @@ public class SaveChildren : MonoBehaviour
                 if (builder.GetComponent<Builder>().buildings[x].name + "(Clone)" == data.names[i])
                 {
                     found = true;
-                    bool work = Instantiate(builder.GetComponent<Builder>().buildings[i], data.locations[i], data.rotations[i], transform);
+                    bool work = Instantiate(builder.GetComponent<Builder>().buildings[x], data.locations[i], data.rotations[i], transform);
                     if (!work)
                     {
                         Debug.Log("load " + i + " Faild");
