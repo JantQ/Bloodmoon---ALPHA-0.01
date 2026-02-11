@@ -13,6 +13,7 @@ public class SaveSystem
     [System.Serializable]
     public struct SaveData
     {
+        public PlayerData playerData;
         public ChildSaveData childSaveData;
     }
 
@@ -33,6 +34,7 @@ public class SaveSystem
     private static void HandleSaveData() 
     {
         GameObject.Find("Builder").GetComponent<SaveChildren>().Save(ref saveData.childSaveData);
+        GameObject.Find("Character").GetComponent<SaveMeeee>().Save(ref saveData.playerData);
     }
 
     public static void Load()
@@ -47,5 +49,6 @@ public class SaveSystem
     private static void HandleLoadData()
     {
         GameObject.Find("Builder").GetComponent<SaveChildren>().Load(saveData.childSaveData);
+        GameObject.Find("Character").GetComponent<SaveMeeee>().Load(saveData.playerData);
     }
 }
