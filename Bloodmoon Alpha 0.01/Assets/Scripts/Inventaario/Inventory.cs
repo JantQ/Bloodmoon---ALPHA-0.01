@@ -101,7 +101,20 @@ public class Inventory : MonoBehaviour
             if (inventorySlots[i].myItem == null)
             {
                 InventoryItem newItem = Instantiate(itemPrefab, inventorySlots[i].transform);
+
+                // Reset RectTransform to fill the slot
+                RectTransform rt = newItem.GetComponent<RectTransform>();
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.offsetMin = Vector2.zero;
+                rt.offsetMax = Vector2.zero;
+                rt.localScale = Vector3.one;
+
                 newItem.Initialize(_item, inventorySlots[i]);
+
+                // Place the item into the slot properly
+                inventorySlots[i].SetItem(newItem);
+
                 break;
             }
         }
