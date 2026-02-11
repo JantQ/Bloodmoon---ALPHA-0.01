@@ -46,6 +46,10 @@ public class Inventory : MonoBehaviour
 
         if (item.activeSlot.myTag != SlotTag.None)
             EquipEquipment(item.activeSlot.myTag, null);
+        if (item.activeSlot != null)
+        {
+            item.activeSlot.ClearSlot();
+        }
 
         carriedItem = item;
         carriedItem.canvasGroup.blocksRaycasts = false;
