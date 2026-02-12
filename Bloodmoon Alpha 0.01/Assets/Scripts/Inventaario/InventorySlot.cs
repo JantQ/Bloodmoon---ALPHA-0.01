@@ -93,24 +93,4 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         if (myTag != SlotTag.None)
             Inventory.Singleton.EquipEquipment(myTag, myItem);
     }
-    public void OnDrop(PointerEventData eventData)
-    {
-        InventoryItem droppedItem =
-            eventData.pointerDrag.GetComponent<InventoryItem>();
-
-        if (droppedItem == null)
-            return;
-
-        if (myItem != null)
-        {
-            // Swap
-            droppedItem.activeSlot.SetItem(myItem);
-        }
-
-        SetItem(droppedItem);
-    }
-    public void ClearSlot()
-    {
-        myItem = null;
-    }
 }
