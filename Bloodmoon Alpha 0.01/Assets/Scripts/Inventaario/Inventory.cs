@@ -38,14 +38,14 @@ public class Inventory : MonoBehaviour
 
     public void SetCarriedItem(InventoryItem item)
     {
-        if (carriedItem != null)
-        {
-            if (item.activeSlot.myTag != SlotTag.None && item.activeSlot.myTag != carriedItem.myItem.itemTag) return;
-            item.activeSlot.SetItem(carriedItem);
-        }
+        if (carriedItem != null) return;
 
-        if (item.activeSlot.myTag != SlotTag.None)
-            EquipEquipment(item.activeSlot.myTag, null);
+        InventorySlot fromSlot = item.activeSlot;
+
+        if (fromSlot != null)
+        {
+            fromSlot.ClearSlot();
+        }
 
         carriedItem = item;
         carriedItem.canvasGroup.blocksRaycasts = false;

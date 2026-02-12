@@ -92,5 +92,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         if (myTag != SlotTag.None)
             Inventory.Singleton.EquipEquipment(myTag, myItem);
+
+    }
+    public void ClearSlot()
+    {
+        myItem = null;
     }
 }
