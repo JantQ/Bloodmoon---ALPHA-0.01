@@ -1204,7 +1204,7 @@ GameObject:
   - component: {fileID: 5800338956563775542}
   - component: {fileID: 6161175777538159050}
   m_Layer: 5
-  m_Name: invSlot (3)
+  m_Name: HinvSlot (3)
   m_TagString: Hotbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - component: {fileID: 2443460873633669510}
   - component: {fileID: 6829743233468347394}
   m_Layer: 5
-  m_Name: invSlot (2)
+  m_Name: HinvSlot (2)
   m_TagString: Hotbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10696,6 +10696,7 @@ GameObject:
   - component: {fileID: 5693178406097764683}
   - component: {fileID: 2224407389193361558}
   - component: {fileID: 8223564564906640631}
+  - component: {fileID: 3915245123481920150}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -10855,6 +10856,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45978826f3bf9bb4bb055c9af6131117, type: 2}
   - {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
   giveItemBtn: {fileID: 7871723213060288303}
+--- !u!114 &3915245123481920150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114428602049360796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fafdfeab594b4499e43a30e207280b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveMyStuff
+  ItemPrefab: {fileID: 8603289045802660552, guid: 3d0177eb8a4897348a045c5f5887028c, type: 3}
+  items:
+  - {fileID: 11400000, guid: effc8f3d4cccb5c4483b27b2dc0a96ea, type: 2}
+  - {fileID: 11400000, guid: 9007dd44e7208154280294062ed5c797, type: 2}
+  - {fileID: 11400000, guid: f1f922c47d6ebaa47949763dacb61b5d, type: 2}
+  - {fileID: 11400000, guid: aa46e3f3b9b94c04596e90bbb28ad955, type: 2}
+  - {fileID: 11400000, guid: 45978826f3bf9bb4bb055c9af6131117, type: 2}
+  - {fileID: 11400000, guid: 03d5c3be118fd5d4c87184bff916418b, type: 2}
+  - {fileID: 11400000, guid: c8ce2c2d36779014d955258626b96535, type: 2}
+  - {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
 --- !u!1 &7158709179250749685
 GameObject:
   m_ObjectHideFlags: 0
@@ -12509,7 +12532,7 @@ GameObject:
   - component: {fileID: 5470987877980762712}
   - component: {fileID: 7803412729337921831}
   m_Layer: 5
-  m_Name: invSlot (4)
+  m_Name: HinvSlot (4)
   m_TagString: Hotbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14248,7 +14271,7 @@ GameObject:
   - component: {fileID: 126897974795982145}
   - component: {fileID: 2703644445385382487}
   m_Layer: 5
-  m_Name: invSlot (5)
+  m_Name: HinvSlot (5)
   m_TagString: Hotbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

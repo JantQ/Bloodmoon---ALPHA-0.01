@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,12 +44,19 @@ public class SaveMyStuff : MonoBehaviour
                 if (Data.InventoryItems[i] == items[j].name)
                 {
                     item.GetComponent<InventoryItem>().myItem = items[j];
-                    if (Data.InventoryNumbers[i] > 0)
+                    if (Data.InventoryNumbers[i] > 1)
                     {
                         item.GetComponentInChildren<Text>().text = Convert.ToString(Data.InventoryNumbers[i]);
                     }
+                    else
+                    {
+                        item.GetComponentInChildren<Text>().text = "";
+                    }
                 }
             }
+            RectTransform rt = item.GetComponent<RectTransform>();
+            item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
+            item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }
     }
 }
