@@ -67,6 +67,65 @@ public class Inventory : MonoBehaviour
             case SlotTag.Feet: break;
         }
     }
+    public bool CanCraft(Recipe recipe)
+    {
+        foreach (var ingredient in recipe.ingredients)
+        {
+            int totalFound = 0;
+
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.myItem != null && slot.myItem.myItem == ingredient.item)
+                {
+                    totalFound += slot.myItem.count;
+                }
+            }
+
+            if (totalFound < ingredient.amount)
+                return false;
+        }
+
+        return true;
+    }
+    public void Craft(Recipe recipe)
+    {
+        if (!CanCraft(recipe))
+        {
+            Debug.Log("Not enough materials!");
+            return;
+        }
+
+        // REMOVE INGREDIENTS
+        foreach (var ingredient in recipe.ingredients)
+        {
+            int amountToRemove = ingredient.amount;
+
+            foreach (InventorySlot slot in inventorySlots)
+            {
+                if (slot.myItem == null) continue;
+                if (slot.myItem.myItem != ingredient.item) continue;
+
+                int removeFromThisSlot = Mathf.Min(amountToRemove, slot.myItem.count);
+
+                slot.myItem.count -= removeFromThisSlot;
+                slot.myItem.UpdateCountText();
+
+                amountToRemove -= removeFromThisSlot;
+
+                if (slot.myItem.count <= 0)
+                {
+                    Destroy(slot.myItem.gameObject);
+                    slot.ClearSlot();
+                }
+
+                if (amountToRemove <= 0)
+                    break;
+            }
+        }
+
+        // SPAWN RESULT
+        SpawnInventoryItem(recipe.result);
+    }
 
     public void SpawnInventoryItem(Item item = null)
     {
