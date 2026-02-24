@@ -948,6 +948,37 @@ Transform:
   - {fileID: 8782050745566686107}
   m_Father: {fileID: 436946942860014234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1185904167080597094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092002509971644123}
+  m_Layer: 3
+  m_Name: HandSockert
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2092002509971644123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185904167080597094}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.06, y: 0.68, z: 0.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8767435390818594262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205639459848523123
 GameObject:
   m_ObjectHideFlags: 0
@@ -7431,6 +7462,8 @@ GameObject:
   - component: {fileID: 6520720173781089413}
   - component: {fileID: 3515512440468336436}
   - component: {fileID: 7007956906748583636}
+  - component: {fileID: 699439869759412828}
+  - component: {fileID: 8470177942619154592}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -7454,6 +7487,7 @@ Transform:
   - {fileID: 3648006395214131907}
   - {fileID: 8424496241944926989}
   - {fileID: 4086689829073628239}
+  - {fileID: 2092002509971644123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1656619941772786532
@@ -7591,6 +7625,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &699439869759412828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734980911737004477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafc803de2df64e4e84972f46d504fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHotbarController
+  inventory: {fileID: 0}
+  handSocket: {fileID: 2092002509971644123}
+  selectedIndex: 0
+--- !u!114 &8470177942619154592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734980911737004477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da90723db3b3c049b8857fa550eed25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  damage: 1
+  range: 2
 --- !u!1 &7758331651814905684
 GameObject:
   m_ObjectHideFlags: 0
