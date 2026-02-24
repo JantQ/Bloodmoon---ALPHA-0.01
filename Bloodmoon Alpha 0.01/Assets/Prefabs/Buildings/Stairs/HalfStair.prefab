@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5119234740436814017}
   - component: {fileID: 3137588229443135427}
   - component: {fileID: 7319477099855255703}
+  - component: {fileID: -7498283782649804302}
   m_Layer: 0
   m_Name: HalfStair
   m_TagString: Stairs
@@ -113,3 +114,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8395622430687436368, guid: 21af0d82a1869004d9db829181414eb8, type: 3}
+--- !u!114 &-7498283782649804302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369101431297108605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc22a8c982ece704b849f168440def17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 5
+  currentHealth: 5
+  breakType: 1
+  dropItem: {fileID: 0}
+  minDrops: 1
+  maxDrops: 3
+  worldItemPrefab: {fileID: 0}
+  dropRadius: 0.5

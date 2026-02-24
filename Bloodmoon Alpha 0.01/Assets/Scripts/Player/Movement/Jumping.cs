@@ -19,9 +19,9 @@ public class Jumping : MonoBehaviour
         isJumping = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Floor"))
         {
             isOnGround = true;
 
@@ -32,7 +32,7 @@ public class Jumping : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Floor"))
         {
             isOnGround = false;
 

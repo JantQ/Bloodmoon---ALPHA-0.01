@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2739580172039538402}
   - component: {fileID: 8027884086251740535}
   - component: {fileID: 8828051915742931477}
+  - component: {fileID: -4887658081166149573}
   m_Layer: 0
   m_Name: LoopStairs
   m_TagString: StairsLoop
@@ -113,3 +114,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8294741021665983119, guid: 6c79ef883add7fa499582b5f04cfd5e9, type: 3}
+--- !u!114 &-4887658081166149573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607974806271753031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc22a8c982ece704b849f168440def17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 5
+  currentHealth: 5
+  breakType: 1
+  dropItem: {fileID: 0}
+  minDrops: 1
+  maxDrops: 3
+  worldItemPrefab: {fileID: 0}
+  dropRadius: 0.5

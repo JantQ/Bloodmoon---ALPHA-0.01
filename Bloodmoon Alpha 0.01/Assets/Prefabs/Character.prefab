@@ -7459,6 +7459,7 @@ GameObject:
   - component: {fileID: 9020907180391439696}
   - component: {fileID: 5136509572970690558}
   - component: {fileID: 8835470954618691099}
+  - component: {fileID: 6823099314252293773}
   - component: {fileID: 6520720173781089413}
   - component: {fileID: 3515512440468336436}
   - component: {fileID: 7007956906748583636}
@@ -7555,6 +7556,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5534f7bb939de4daeb6ed8e21a0f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Walking
+--- !u!114 &6823099314252293773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734980911737004477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc25723c2c0d6ee4e9f4022ce0e5d206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveMeeee
 --- !u!54 &6520720173781089413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7654,6 +7667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   damage: 1
   range: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!1 &7758331651814905684
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 /// <summary>
 /// Handles player interactions with breakable objects (trees, rocks, etc.)
@@ -8,11 +9,12 @@ public class PlayerInteraction : MonoBehaviour
 {
     public int damage = 1;     // Damage per hit
     public float range = 2f;   // Interaction distance
+    public LayerMask mask;
 
     void Update()
     {
         // Left mouse click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             TryHit();
         }
@@ -35,14 +37,16 @@ public class PlayerInteraction : MonoBehaviour
             Camera.main.transform.forward
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, range))
+        if (Physics.Raycast(ray, out RaycastHit hit, range, mask))
         {
+            Debug.DrawRay(ray.origin,ray.direction*range, Color.red, 1000f);
             BreakableObject breakable =
                 hit.collider.GetComponentInParent<BreakableObject>();
 
             if (breakable == null)
             {
                 Debug.Log("Hit non-breakable");
+                Debug.Log(hit.transform.name);
                 return;
             }
 
@@ -54,7 +58,7 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             }
 
-            breakable.TakeDamage(damage);
+            breakable.TakeDamage(damage * Time.deltaTime);
         }
     }
 

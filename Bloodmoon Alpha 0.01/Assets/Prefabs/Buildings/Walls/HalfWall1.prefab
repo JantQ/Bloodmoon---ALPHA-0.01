@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4603671786341066295}
   - component: {fileID: 2146079911097870487}
   - component: {fileID: 3129928983268724695}
+  - component: {fileID: -5746854992390455262}
   m_Layer: 0
   m_Name: HalfWall1
   m_TagString: Wall
@@ -113,3 +114,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -516217099846950994, guid: 21af0d82a1869004d9db829181414eb8, type: 3}
+--- !u!114 &-5746854992390455262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286743184076911903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc22a8c982ece704b849f168440def17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 5
+  currentHealth: 5
+  breakType: 1
+  dropItem: {fileID: 0}
+  minDrops: 1
+  maxDrops: 3
+  worldItemPrefab: {fileID: 0}
+  dropRadius: 0.5

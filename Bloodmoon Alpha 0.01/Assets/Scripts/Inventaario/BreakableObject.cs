@@ -4,10 +4,10 @@ public class BreakableObject : MonoBehaviour
 {
     [Header("Stats")]
     public int maxHealth = 5;
-    public int currentHealth = 5;
+    public float currentHealth = 5;
 
     [Header("Break Settings")]
-    public BreakType breakType;
+    public BreakType breakType = BreakType.Tree;
 
     [Header("Drops")]
     public Item dropItem;
@@ -17,7 +17,7 @@ public class BreakableObject : MonoBehaviour
     public GameObject worldItemPrefab;
     public float dropRadius = 0.5f;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
@@ -31,16 +31,19 @@ public class BreakableObject : MonoBehaviour
 
         for (int i = 0; i < dropCount; i++)
         {
-            Vector3 offset = Random.insideUnitSphere * dropRadius;
-            offset.y = 0f;
+            if (worldItemPrefab != null)
+            {
+                Vector3 offset = Random.insideUnitSphere * dropRadius;
+                offset.y = 0f;
 
-            GameObject drop = Instantiate(
-                worldItemPrefab,
-                transform.position + offset,
-                Quaternion.identity
-            );
+                GameObject drop = Instantiate(
+                    worldItemPrefab,
+                    transform.position + offset,
+                    Quaternion.identity
+                );
 
-            drop.GetComponent<WorldItemPickup>().item = dropItem;
+                drop.GetComponent<WorldItemPickup>().item = dropItem;
+            }
         }
 
         Destroy(gameObject);

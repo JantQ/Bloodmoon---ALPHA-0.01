@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8155097932349041070}
   - component: {fileID: 341185759202261593}
   - component: {fileID: 9171161908252600309}
+  - component: {fileID: 6609919199286451665}
   m_Layer: 0
   m_Name: Door3
   m_TagString: Wall
@@ -113,3 +114,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3861202813800034234, guid: 5b352ad02a4839d43ab945cdd602ab4c, type: 3}
+--- !u!114 &6609919199286451665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348215961839368542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc22a8c982ece704b849f168440def17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
+  maxHealth: 5
+  currentHealth: 5
+  breakType: 1
+  dropItem: {fileID: 0}
+  minDrops: 1
+  maxDrops: 3
+  worldItemPrefab: {fileID: 0}
+  dropRadius: 0.5
