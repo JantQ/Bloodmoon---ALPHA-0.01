@@ -124,7 +124,10 @@ public class Inventory : MonoBehaviour
         }
 
         // SPAWN RESULT
-        SpawnInventoryItem(recipe.result);
+        for (int i = 0; i < recipe.resultAmount; i++)
+        {
+            SpawnInventoryItem(recipe.result);
+        }
     }
 
     public void SpawnInventoryItem(Item item = null)

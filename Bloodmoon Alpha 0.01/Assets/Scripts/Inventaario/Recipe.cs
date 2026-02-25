@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Recipe")]
+[CreateAssetMenu(menuName = "Crafting/Recipe")]
 public class Recipe : ScriptableObject
 {
     [System.Serializable]
@@ -11,5 +11,8 @@ public class Recipe : ScriptableObject
     }
 
     public Ingredient[] ingredients;
+
+    [Header("Result")]
     public Item result;
+    public int resultAmount = 1; 
 }
