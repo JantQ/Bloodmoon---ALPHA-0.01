@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AnimalNpc : MonoBehaviour
+public class AnimalNpc : IDamageable
 {
     [Header("References")]
     [SerializeField] protected NavMeshAgent agent;
@@ -12,7 +12,6 @@ public class AnimalNpc : MonoBehaviour
     [SerializeField] protected Animator animator;
 
     [Header("Basic Stats")]
-    [SerializeField] protected float health = 50f;
     [SerializeField] protected float roamingRange = 10f;
     [SerializeField] protected float viewDistance = 15f;
     [SerializeField] protected float fov = 60f;
@@ -102,7 +101,7 @@ public class AnimalNpc : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage();
+            DealDamage(damage, player);
         }
     }
 
@@ -127,26 +126,7 @@ public class AnimalNpc : MonoBehaviour
         animator.SetBool("Sit", false);
     }
 
-    public virtual void TakeDamage(float dmg)
-    {
-        if (!isAlive) return;
-
-        health -= dmg;
-        if (debug) Debug.Log($"{gameObject.name} took {dmg} damage. HP now {health}");
-
-        if (health <= 0f && isAlive)
-        {
-            isAlive = false;
-            Die();
-        }
-    }
-
-    protected virtual void DealDamage()
-    {
-
-    }
-
-    protected virtual void Die()
+    protected override void Die()
     {
         agent.isStopped = true;
         agent.ResetPath();
