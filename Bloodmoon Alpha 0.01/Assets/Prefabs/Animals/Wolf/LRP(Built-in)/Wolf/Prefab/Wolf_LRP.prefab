@@ -113,7 +113,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8867960657160430145}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 858e522b7713a57439359d2b4fa6ef67, type: 3}
   m_Controller: {fileID: 9100000, guid: 1023d0a786426f748814e97c0e182959, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -160,11 +160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f117114cc7bf8294aad28fe5fa2860a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wolf
+  health: 50
+  maxHealth: 50
   agent: {fileID: 1385007520431286146}
   player: {fileID: 0}
   raycastPoint: {fileID: 8095927965497407739}
   animator: {fileID: 7996408572775879113}
-  health: 50
   roamingRange: 10
   viewDistance: 15
   fov: 60
