@@ -127,6 +127,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457687906675390620, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 457687906675390620, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 457687906675390620, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 457687906675390620, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400
+      objectReference: {fileID: 0}
     - target: {fileID: 535155641267216671, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -202,6 +218,14 @@ PrefabInstance:
     - target: {fileID: 1262477853885693606, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -502.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362538512497125635, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362538512497125635, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1671334745113390159, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_IsActive
@@ -347,6 +371,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3530157234088628024, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3532727289184172758, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -370,6 +398,26 @@ PrefabInstance:
     - target: {fileID: 3532727289184172758, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849265066684287483, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898047501993297553, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Name
+      value: WaterBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935880005817880546, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935880005817880546, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.044977855
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935880005817880546, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4264151
       objectReference: {fileID: 0}
     - target: {fileID: 3960622987842966741, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -421,6 +469,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187211862754225541, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221661246860629757, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221661246860629757, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4567698811223810480, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
@@ -486,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 5376280137942260917, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -653.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5414326416412636398, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_Name
+      value: FoodBar
       objectReference: {fileID: 0}
     - target: {fileID: 5418235291928007813, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchorMax.y
@@ -841,6 +901,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764849443106180696, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820502589176925047, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820502589176925047, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7823510005402465227, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
@@ -1376,6 +1444,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
+      propertyPath: foodBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
+      propertyPath: waterBar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 699439869759412828, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: inventory
       value: 
