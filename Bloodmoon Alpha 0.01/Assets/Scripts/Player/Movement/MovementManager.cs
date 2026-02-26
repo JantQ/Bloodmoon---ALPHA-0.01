@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovementManager : MonoBehaviour
+public class MovementManager : IDamageable
 {
     public float moveSpeed = 2;
     public float speedMultiplier = 2.5f;
