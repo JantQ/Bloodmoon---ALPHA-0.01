@@ -34,6 +34,7 @@ public class AnimalNpc : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        if (player == null) player = GameObject.Find("Character");
         if (agent == null) agent = GetComponent<NavMeshAgent>();
         if (animator == null) animator = GetComponentInChildren<Animator>();
 
