@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 1813457890293407724}
   - component: {fileID: 8466927816014535758}
   - component: {fileID: -8764914356066834345}
-  m_Layer: 0
+  - component: {fileID: -3474669416908166601}
+  m_Layer: 8
   m_Name: FunnyStair2
   m_TagString: StairsRight
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &-3474669416908166601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4538987600186969522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0

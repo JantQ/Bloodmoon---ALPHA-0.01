@@ -57,6 +57,7 @@ public class Builder : MonoBehaviour
                 Ghoust.AddComponent<BoxCollider>().size /= 1.1f;
                 Ghoust.AddComponent<Validation>();
                 Ghoust.AddComponent<Rigidbody>();
+                Destroy(Ghoust.GetComponent<BuildingID>());
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -77,9 +78,17 @@ public class Builder : MonoBehaviour
             bool can = Valid();
             if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
-                Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
+                GameObject go = Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
                 update.NavUpdate();
                 rotat = 0;
+                if (hit.transform.tag != "Ground")
+                {
+                    GetComponent<BuildingColapse>().newObject(go, hit.transform.GetComponent<BuildingID>().BuildingListID);
+                }
+                else
+                {
+                    GetComponent<BuildingColapse>().newObject(go, -1);
+                }
             }
         }
         else if (Ghoust != null) // Jos ei rakentamassa ja haamu on olemassa, tuhoa haamu

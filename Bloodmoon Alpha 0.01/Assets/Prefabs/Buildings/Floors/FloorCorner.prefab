@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2206343175460762419}
   - component: {fileID: 7592050664006184417}
   - component: {fileID: -6193976770421467665}
-  m_Layer: 0
+  - component: {fileID: -7678078048897860352}
+  m_Layer: 8
   m_Name: FloorCorner
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &-7678078048897860352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703854162492821741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0

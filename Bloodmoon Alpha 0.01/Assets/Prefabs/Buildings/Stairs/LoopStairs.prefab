@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8027884086251740535}
   - component: {fileID: 8828051915742931477}
   - component: {fileID: -4887658081166149573}
-  m_Layer: 0
+  - component: {fileID: 5488702887352127242}
+  m_Layer: 8
   m_Name: LoopStairs
   m_TagString: StairsLoop
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &5488702887352127242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607974806271753031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0

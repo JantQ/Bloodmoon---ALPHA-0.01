@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6011282738911859910}
   - component: {fileID: 5411287150448170744}
   - component: {fileID: -8005499859640277677}
-  m_Layer: 0
+  - component: {fileID: -2654648718586152338}
+  m_Layer: 8
   m_Name: Ramp
   m_TagString: Stairs
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &-2654648718586152338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271169332701704351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0

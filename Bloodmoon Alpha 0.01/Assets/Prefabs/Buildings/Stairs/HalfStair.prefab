@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3137588229443135427}
   - component: {fileID: 7319477099855255703}
   - component: {fileID: -7498283782649804302}
-  m_Layer: 0
+  - component: {fileID: -5413736096516015981}
+  m_Layer: 8
   m_Name: HalfStair
   m_TagString: Stairs
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &-5413736096516015981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369101431297108605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0

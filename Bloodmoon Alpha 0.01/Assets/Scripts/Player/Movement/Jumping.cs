@@ -25,8 +25,8 @@ public class Jumping : MonoBehaviour
         {
             isOnGround = true;
 
-            if (animator != null)
-                animator.SetBool("IsGrounded", true);
+            //if (animator != null)
+                //animator.SetBool("IsGrounded", true);
         }
     }
 

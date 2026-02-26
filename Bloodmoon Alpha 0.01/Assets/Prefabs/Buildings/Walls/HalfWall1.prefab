@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2146079911097870487}
   - component: {fileID: 3129928983268724695}
   - component: {fileID: -5746854992390455262}
-  m_Layer: 0
+  - component: {fileID: 3097859251126475895}
+  m_Layer: 8
   m_Name: HalfWall1
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -134,3 +135,17 @@ MonoBehaviour:
   maxDrops: 3
   worldItemPrefab: {fileID: 0}
   dropRadius: 0.5
+--- !u!114 &3097859251126475895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286743184076911903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  BuildingListID: 0
+  IsOnGround: 0
