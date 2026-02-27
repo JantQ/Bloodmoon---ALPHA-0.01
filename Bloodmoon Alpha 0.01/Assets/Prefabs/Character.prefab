@@ -7618,7 +7618,7 @@ MonoBehaviour:
   moveSpeed: 2
   runMultiplier: 2.5
   crouchMultiplier: 0.5
-  jumpPower: 25
+  jumpPower: 5
   groundTags:
   - Ground
   - Floor
@@ -7626,7 +7626,13 @@ MonoBehaviour:
   runBool: IsRunning
   groundedBool: IsGrounded
   jumpTrigger: IsJumping
-  isOnGround: 0
+  healthBar: {fileID: 0}
+  foodBar: {fileID: 0}
+  waterBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  food: 100
+  water: 100
+  stamina: 100
 --- !u!1 &7758331651814905684
 GameObject:
   m_ObjectHideFlags: 0
