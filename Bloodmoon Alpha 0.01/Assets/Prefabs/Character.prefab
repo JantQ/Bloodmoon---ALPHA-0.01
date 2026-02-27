@@ -7618,14 +7618,21 @@ MonoBehaviour:
   moveSpeed: 2
   runMultiplier: 2.5
   crouchMultiplier: 0.5
-  jumpPower: 25
+  jumpPower: 5
   groundTags:
   - Ground
   - Floor
+  - Stairs
+  - StairsRight
+  - StairsLeft
+  - StairsLoop
   walkBool: IsWalking
   runBool: IsRunning
   groundedBool: IsGrounded
   jumpTrigger: IsJumping
+  healthBar: {fileID: 0}
+  foodBar: {fileID: 0}
+  waterBar: {fileID: 0}
   isOnGround: 0
 --- !u!1 &7758331651814905684
 GameObject:

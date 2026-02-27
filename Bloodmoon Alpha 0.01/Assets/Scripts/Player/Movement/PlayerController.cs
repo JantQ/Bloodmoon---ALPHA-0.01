@@ -13,7 +13,7 @@ public class PlayerController : IDamageable
     public float jumpPower = 250f;
 
     [Header("Ground Check")]
-    public string[] groundTags = { "Ground", "Floor" };
+    public string[] groundTags = { "Ground", "Floor" , "Stairs", "StairsRight", "StairsLeft", "StairsLoop" };
 
     [Header("Animation Params")]
     public string walkBool = "IsWalking";
@@ -140,8 +140,8 @@ public class PlayerController : IDamageable
         if (IsGroundObject(collision.gameObject))
         {
             isOnGround = true;
-            if (animator != null)
-                animator.SetBool(groundedBool, true);
+            //if (animator != null)
+                //animator.SetBool(groundedBool, true);
         }
     }
 
@@ -150,8 +150,8 @@ public class PlayerController : IDamageable
         if (IsGroundObject(collision.gameObject))
         {
             isOnGround = false;
-            if (animator != null)
-                animator.SetBool(groundedBool, false);
+            //if (animator != null)
+                //animator.SetBool(groundedBool, false);
         }
     }
 
