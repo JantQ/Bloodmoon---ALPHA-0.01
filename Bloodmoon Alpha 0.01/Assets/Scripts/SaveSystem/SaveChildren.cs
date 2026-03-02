@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,8 +13,11 @@ public class SaveChildren : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            SaveSystem.Save();
-            loaded = true;
+            if (File.Exists(SaveSystem.SaveFileName()))
+            {
+                SaveSystem.Save();
+                loaded = true;
+            }
         }
         if (Input.GetKeyDown(KeyCode.R) && !loaded)
         {
@@ -83,14 +87,14 @@ public class SaveChildren : MonoBehaviour
                         {
                             if (data.buildingsID[i] == data.buildings[h])
                             {
-                                while (coll.buildings.Count <= h)
+                                while (coll.buildings.Count <= instance.GetComponent<BuildingID>().BuildingListID)
                                 {
                                     coll.buildings.Add(new List<BuildingColapse.Structure>());
                                 }
                                 BuildingColapse.Structure structure = new BuildingColapse.Structure();
                                 structure.Me = instance.gameObject;
                                 structure.onGround = data.isgrounded[i];
-                                coll.buildings[h].Add(structure);
+                                coll.buildings[instance.GetComponent<BuildingID>().BuildingListID].Add(structure);
                             }
                         }
                     }
@@ -102,6 +106,11 @@ public class SaveChildren : MonoBehaviour
             }
         }
         builder.GetComponent<Builder>().update.NavUpdate();
+        Debug.Log(coll.buildings.Count);
+        foreach (List<BuildingColapse.Structure> build in coll.buildings)
+        {
+            Debug.Log(build.Count);
+        }
     }
 }
 [System.Serializable]
