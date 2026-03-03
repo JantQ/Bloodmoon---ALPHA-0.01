@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.49
+      value: 13.010778
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: 0.0000010296408
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.82
+      value: -10.27089
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.w
@@ -160,11 +160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f117114cc7bf8294aad28fe5fa2860a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wolf
+  health: 50
+  maxHealth: 50
+  Blood: {fileID: 3802586455251347144, guid: c68e5687c76bddf4eb0a8f46c143704e, type: 3}
   agent: {fileID: 1385007520431286146}
   player: {fileID: 0}
   raycastPoint: {fileID: 8095927965497407739}
   animator: {fileID: 7996408572775879113}
-  health: 50
   roamingRange: 10
   viewDistance: 15
   fov: 60
