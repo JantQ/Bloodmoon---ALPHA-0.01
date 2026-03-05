@@ -3,7 +3,7 @@ using UnityEngine;
 public class IDamageable : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] protected float health = 50f;
+    public float health = 50f;
     [SerializeField] protected float maxHealth = 50f;
     protected virtual void DealDamage(float dmg, GameObject target)
     {

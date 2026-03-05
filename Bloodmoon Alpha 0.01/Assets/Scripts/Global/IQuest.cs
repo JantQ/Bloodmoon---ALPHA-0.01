@@ -12,18 +12,25 @@ public class IQuest : MonoBehaviour {
     [SerializeField] protected List<Step> nodes;
     [SerializeField] protected QuestType qt = QuestType.Story;
 
-    private void Node(int id, string name, bool done) {
-        
-    }
+    protected QuestManager qm;
 
-    void OnEnable() {
+    protected virtual void ProgressQuest(){
         foreach (var node in nodes) {
-            Node(node.id, node.name, node.done);
+            if (node.done == true) {
+                continue;
+            }
+            else {
+                node.done = true;
+                if (node.id >= nodes.Count) {
+                    CompleteQuest();
+                }
+                break;
+            }
         }
-    }
 
-    protected virtual void GiveQuest() {
-        
+    }
+    void OnEnable() {
+        qm = FindAnyObjectByType<QuestManager>();
     }
 
     [ContextMenu("Test")]
@@ -40,7 +47,10 @@ public class IQuest : MonoBehaviour {
             }
         }
     }
+    
+    protected virtual void CompleteQuest() {
 
+    }
 }
 
 [System.Serializable]
