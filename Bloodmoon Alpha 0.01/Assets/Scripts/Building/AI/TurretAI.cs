@@ -20,6 +20,8 @@ public class TurretAI : IDamageable
     public Transform Head;
     public Transform Neck;
 
+    Wolf Animal = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -43,46 +45,27 @@ public class TurretAI : IDamageable
 
     bool PointAtTarget()
     {
-        float TarDistXYZ = 0;
-        if (target != null)
+        if (Animal == null)
         {
-            Vector3 TarDist = transform.position - target.transform.position;
-            float TarDistX = Mathf.Abs(TarDist.x);
-            float TarDistY = Mathf.Abs(TarDist.y);
-            float TarDistZ = Mathf.Abs(TarDist.z);
-            TarDistXYZ = TarDistX + TarDistY + TarDistZ;
+            if (target == null)
+            {
+                EnemyList = Physics.OverlapSphere(transform.position, range, Enemys);
+                target = EnemyList[0].gameObject;
+            }
+            Animal =target.GetComponent<Wolf>();
         }
-        if (target == null || TarDistXYZ > range || !target.GetComponent<AnimalNpc>().Alive())
+        if (target == null || !Animal.Alive())
         {
             EnemyList = Physics.OverlapSphere(transform.position, range, Enemys);
-            if (EnemyList == null) 
+            for (int i = 0; i < EnemyList.Length; i++)
             {
-                return false;
-            }
-            foreach (Collider col in EnemyList)
-            {
-                if (target == null)
+                target = EnemyList[i].gameObject;
+                if (target.GetComponent<Wolf>().Alive())
                 {
-                    target = col.gameObject;
-                }
-                else
-                {
-                    Vector3 ColDist = transform.position - col.transform.position;
-                    float ColDistX = Mathf.Abs(ColDist.x);
-                    float ColDistY = Mathf.Abs(ColDist.y);
-                    float ColDistZ = Mathf.Abs(ColDist.z);
-                    float ColDistXYZ = ColDistX + ColDistY + ColDistZ;
-                    Vector3 TarDist = transform.position - target.transform.position;
-                    float TarDistX = Mathf.Abs(TarDist.x);
-                    float TarDistY = Mathf.Abs(TarDist.y);
-                    float TarDistZ = Mathf.Abs(TarDist.z);
-                    TarDistXYZ = TarDistX + TarDistY + TarDistZ;
-                    if (ColDistXYZ < TarDistXYZ)
-                    {
-                        target = col.gameObject;
-                    }
+                    break;
                 }
             }
+            Animal = target.GetComponent<Wolf>();
         }
         int xyHit = 0;
         if (Head != null)
@@ -91,11 +74,11 @@ public class TurretAI : IDamageable
             Head.LookAt(target.transform.position);
             Vector3 EnemyPos = Head.rotation.eulerAngles;
             Head.rotation = Quaternion.Euler(CurentRotation);
-            if ((EnemyPos.y - CurentRotation.y) % 360 >= RotationSpeed * Time.deltaTime)
+            if ((EnemyPos.y - CurentRotation.y) >= RotationSpeed * Time.deltaTime)
             {
                 Head.Rotate(0, RotationSpeed * Time.deltaTime, 0);
             }
-            else if ((EnemyPos.y - CurentRotation.y) % 360 <= -RotationSpeed * Time.deltaTime)
+            else if ((EnemyPos.y - CurentRotation.y) <= -RotationSpeed * Time.deltaTime)
             {
                 Head.Rotate(0, -RotationSpeed * Time.deltaTime, 0);
             }
@@ -131,11 +114,11 @@ public class TurretAI : IDamageable
             transform.LookAt(target.transform.position);
             Vector3 EnemyPos = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Euler(CurentRotation);
-            if ((EnemyPos.y - CurentRotation.y) % 360 >= RotationSpeed * Time.deltaTime)
+            if ((EnemyPos.y - CurentRotation.y) >= RotationSpeed * Time.deltaTime)
             {
                 transform.Rotate(0,RotationSpeed * Time.deltaTime, 0);
             }
-            else if ((EnemyPos.y - CurentRotation.y) % 360 <= -RotationSpeed * Time.deltaTime)
+            else if ((EnemyPos.y - CurentRotation.y) <= -RotationSpeed * Time.deltaTime)
             {
                 transform.Rotate(0, -RotationSpeed * Time.deltaTime, 0);
             }

@@ -20,6 +20,7 @@ public class AnimalNpc : IDamageable
 
     [Header("Effects")]
     [SerializeField] protected ParticleSystem effect;
+    [SerializeField] protected AudioSource Death_Sound;
 
     [Header("Debug Options")]
     [SerializeField] protected bool debug = true;
@@ -135,6 +136,7 @@ public class AnimalNpc : IDamageable
 
         if (debug) Debug.Log($"{gameObject.name} died.");
 
+        Death_Sound.Play();
         vfx = Instantiate(effect, transform.position, Quaternion.identity);
         vfx.Stop();
         Destroy(gameObject, vfx.main.duration - 0.5f);
