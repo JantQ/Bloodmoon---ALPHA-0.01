@@ -119,6 +119,83 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &100985121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100985123}
+  - component: {fileID: 100985122}
+  m_Layer: 0
+  m_Name: QuestOfBalls
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &100985122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100985121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1713abd3c616221ab8618b32762b39e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  questId: 2
+  questName: Quest Of Balls
+  nodes:
+  - id: 0
+    name: Quest Start
+    done: 0
+    reqs:
+    - type: 2
+      targetId: Talk to Gary
+      neededAmount: 1
+      currentAmount: 0
+    - type: 3
+      targetId: Quest Of Steel
+      neededAmount: 1
+      currentAmount: 0
+  - id: 1
+    name: Forge Balls
+    done: 0
+    reqs:
+    - type: 0
+      targetId: Balls Of fire
+      neededAmount: 5
+      currentAmount: 0
+  - id: 2
+    name: Talk To Gary
+    done: 0
+    reqs:
+    - type: 2
+      targetId: Talk To Gary
+      neededAmount: 1
+      currentAmount: 0
+  qt: 0
+  state: 0
+--- !u!4 &100985123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100985121}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 383.0043, y: -0, z: 77.38618}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269442186
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,21 +892,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      propertyPath: food
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      propertyPath: water
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: foodBar
       value: 
       objectReference: {fileID: 1703204686}
-    - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      propertyPath: stamina
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 310157435590329273, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: waterBar
       value: 
@@ -1229,6 +1294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdea4c5c77e303429c2e5ca05466dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestOfSteel
+  questId: 1
   questName: Quest Of Steel
   nodes:
   - id: 0
@@ -1248,7 +1314,7 @@ MonoBehaviour:
       neededAmount: 5
       currentAmount: 0
   - id: 2
-    name: 
+    name: Talk to Gary
     done: 0
     reqs:
     - type: 2
@@ -1256,6 +1322,7 @@ MonoBehaviour:
       neededAmount: 1
       currentAmount: 0
   qt: 0
+  state: 0
 --- !u!4 &1820820966
 Transform:
   m_ObjectHideFlags: 0
@@ -1536,3 +1603,4 @@ SceneRoots:
   - {fileID: 965251962591280629}
   - {fileID: 269442188}
   - {fileID: 1820820966}
+  - {fileID: 100985123}

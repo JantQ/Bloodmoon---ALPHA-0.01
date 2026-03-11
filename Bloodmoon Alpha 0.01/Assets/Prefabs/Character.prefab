@@ -7582,8 +7582,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHotbarController
   inventory: {fileID: 0}
+  playerController: {fileID: 0}
   handSocket: {fileID: 2092002509971644123}
   selectedIndex: 0
+  useConsumableKey: 101
 --- !u!114 &8470177942619154592
 MonoBehaviour:
   m_ObjectHideFlags: 0
