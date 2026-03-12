@@ -62,6 +62,15 @@ public class SaveChildren : MonoBehaviour
 
     public void Load(ChildSaveData data)
     {
+        if (transform.childCount != 0)
+        {
+            Transform[] Children = GetComponentsInChildren<Transform>();
+            foreach (Transform child in Children)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         BuildingColapse coll = transform.GetComponent<BuildingColapse>();
         coll.buildings = new List<List<BuildingColapse.Structure>>();
         GameObject builder = GameObject.Find("Builder");
