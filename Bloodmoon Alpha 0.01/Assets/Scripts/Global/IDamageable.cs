@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class IDamageable : MonoBehaviour
 {
@@ -12,10 +13,6 @@ public class IDamageable : MonoBehaviour
             Debug.Log($"Dealing {dmg} damage to {target.name}");
             damageable.TakeDamage(dmg);
         }
-        else
-        {
-            Debug.LogWarning($"{target.name} does not implement IDamageable.");
-        }
     }
 
     protected virtual void TakeDamage(float dmg)
@@ -28,14 +25,13 @@ public class IDamageable : MonoBehaviour
             Die();
     }
 
-    protected virtual void Heal(float amount)
-    {
-        health = Mathf.Clamp(health + amount, 0f, maxHealth);
-    }
-
     protected virtual void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
 
+        if (CompareTag("Player"))
+        {
+            OnPlayerDeath?.Invoke();
+        }
     }
 }
