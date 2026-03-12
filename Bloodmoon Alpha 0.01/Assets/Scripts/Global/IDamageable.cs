@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class IDamageable : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class IDamageable : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField] protected ParticleSystem Blood;
+
+    public static Action OnPlayerDeath;
+
     protected virtual void DealDamage(float dmg, GameObject target)
     {
         if (target.TryGetComponent(out IDamageable damageable))
@@ -15,17 +19,13 @@ public class IDamageable : MonoBehaviour
             Debug.Log($"Dealing {dmg} damage to {target.name}");
             damageable.TakeDamage(dmg);
         }
-        else
-        {
-            Debug.LogWarning($"{target.name} does not implement IDamageable.");
-        }
     }
 
     protected virtual void TakeDamage(float dmg)
     {
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
 
-        Instantiate(Blood, transform.position, new Quaternion());
+        Instantiate(Blood, transform.position, Quaternion.identity);
 
         Debug.Log($"{gameObject.name} took {dmg} damage. Remaining health: {health}/{maxHealth}");
 
@@ -33,14 +33,13 @@ public class IDamageable : MonoBehaviour
             Die();
     }
 
-    protected virtual void Heal(float amount)
-    {
-        health = Mathf.Clamp(health + amount, 0f, maxHealth);
-    }
-
     protected virtual void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
 
+        if (CompareTag("Player"))
+        {
+            OnPlayerDeath?.Invoke();
+        }
     }
 }
