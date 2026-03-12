@@ -130,9 +130,10 @@ GameObject:
   - component: {fileID: 942936188}
   - component: {fileID: 942936187}
   - component: {fileID: 942936186}
+  - component: {fileID: 942936189}
   m_Layer: 0
   m_Name: Terrain-1_3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -212,6 +213,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!192 &942936189
+OcclusionArea:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942936185}
+  serializedVersion: 2
+  m_Size: {x: 500, y: 1000, z: 500}
+  m_Center: {x: 250, y: 500, z: 250}
+  m_IsViewVolume: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

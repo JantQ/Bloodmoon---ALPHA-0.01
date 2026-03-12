@@ -26,10 +26,14 @@ public class SceneLoader : MonoBehaviour
     void Update()
     {
         UpdateChunks();
+        UpdateVisibleChunks();
     }
 
     void UpdateChunks()
     {
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camPos = Camera.main.transform.position - camForward * 200f;
+
         int playerChunkX = Mathf.FloorToInt(player.transform.position.x / chunkSize) + 1;
         int playerChunkZ = Mathf.FloorToInt(player.transform.position.z / chunkSize) + 1;
 
@@ -45,8 +49,21 @@ public class SceneLoader : MonoBehaviour
             {
                 int chunkX = playerChunkX + x;
                 int chunkZ = playerChunkZ + z;
+                bool isPlayerChunk = (chunkX == playerChunkX && chunkZ == playerChunkZ);
 
                 if (chunkX < minX || chunkX > maxX || chunkZ < minZ || chunkZ > maxZ)
+                    continue;
+
+                Vector3 chunkCenter = new Vector3((chunkX - 0.5f) * chunkSize, camPos.y, (chunkZ - 0.5f) * chunkSize);
+
+                Vector3 dirToChunk = (chunkCenter - camPos).normalized;
+
+                float dot = Vector3.Dot(camForward, dirToChunk);
+
+                // Skip chunks mostly behind the camera
+                float unloadThreshold = -0.4f;
+
+                if (!isPlayerChunk && dot < unloadThreshold)
                     continue;
 
                 string sceneName = $"Scene_Terrain-{chunkX}_{chunkZ}";
@@ -87,5 +104,25 @@ public class SceneLoader : MonoBehaviour
 
         loadingScenes.Remove(sceneName);
         loadedScenes.Add(sceneName);
+    }
+
+    void UpdateVisibleChunks()
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+
+        foreach (string sceneName in loadedScenes)
+        {
+            Scene scene = SceneManager.GetSceneByName(sceneName);
+
+            foreach (GameObject root in scene.GetRootGameObjects())
+            {
+                Renderer[] renderers = root.GetComponentsInChildren<Renderer>();
+
+                foreach (Renderer r in renderers)
+                {
+                    r.enabled = GeometryUtility.TestPlanesAABB(planes, r.bounds);
+                }
+            }
+        }
     }
 }
