@@ -2507,10 +2507,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2706126274618733401, guid: 42e5fe4b47b88d6419de88064ab92c54, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2973235960353028021, guid: 42e5fe4b47b88d6419de88064ab92c54, type: 3}
       propertyPath: m_Name
       value: Decal
