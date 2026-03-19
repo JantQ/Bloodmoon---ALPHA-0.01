@@ -154,19 +154,24 @@ public class TurretAI : IDamageable
 
     void Shoot()
     {
+        Vector3 KnockBack = transform.forward;
+        if (Head != null)
+        {
+            KnockBack = Head.transform.forward;
+        }
         if (LastShotTime + (1 / ShotPerSec) < Time.time)
         {
             if (1 / ShotPerSec < Time.deltaTime)
             {
                 for (int i = 0; (1 / ShotPerSec) / Time.deltaTime > i; i++)
                 {
-                    DealDamage(ShotDamage, target);
+                    DealDamage(ShotDamage, target, KnockBack);
                 }
                 LastShotTime = Time.time;
             }
             else
             {
-                DealDamage(ShotDamage, target);
+                DealDamage(ShotDamage, target, KnockBack);
                 LastShotTime = Time.time;
             }
         }

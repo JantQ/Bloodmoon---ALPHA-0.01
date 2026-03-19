@@ -12,18 +12,20 @@ public class IDamageable : MonoBehaviour
 
     public static Action OnPlayerDeath;
 
-    protected virtual void DealDamage(float dmg, GameObject target)
+    protected virtual void DealDamage(float dmg, GameObject target, Vector3 KnockBack)
     {
         if (target.TryGetComponent(out IDamageable damageable))
         {
             Debug.Log($"Dealing {dmg} damage to {target.name}");
-            damageable.TakeDamage(dmg);
+            damageable.TakeDamage(dmg, KnockBack);
         }
     }
 
-    protected virtual void TakeDamage(float dmg)
+    protected virtual void TakeDamage(float dmg, Vector3 KnockBack)
     {
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
+
+        transform.position += KnockBack;
 
         Instantiate(Blood, transform.position, Quaternion.identity);
 

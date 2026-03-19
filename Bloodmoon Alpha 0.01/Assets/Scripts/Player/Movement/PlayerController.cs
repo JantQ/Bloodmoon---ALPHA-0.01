@@ -228,7 +228,7 @@ public class PlayerController : IDamageable
         if (water > 0)
             water = Mathf.Clamp(water - amount, 0, 100);
         else
-            TakeDamage(amount);
+            TakeDamage(amount,new Vector3());
     }
 
     public void ConsumeFood(int amount)
@@ -236,7 +236,7 @@ public class PlayerController : IDamageable
         if (food > 0)
             food = Mathf.Clamp(food - amount, 0, 100);
         else
-            TakeDamage(amount);
+            TakeDamage(amount, new Vector3());
     }
 
     public void RestoreFood(int amount)
