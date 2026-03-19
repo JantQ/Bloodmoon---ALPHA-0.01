@@ -198,8 +198,8 @@ public class PlayerController : IDamageable
         if (IsGroundObject(collision.gameObject))
         {
             isOnGround = true;
-            if (animator != null)
-                animator.SetBool(groundedBool, true);
+            //if (animator != null)
+                //animator.SetBool(groundedBool, true);
         }
     }
 
@@ -208,8 +208,8 @@ public class PlayerController : IDamageable
         if (IsGroundObject(collision.gameObject))
         {
             isOnGround = false;
-            if (animator != null)
-                animator.SetBool(groundedBool, false);
+            //if (animator != null)
+                //animator.SetBool(groundedBool, false);
         }
     }
 
