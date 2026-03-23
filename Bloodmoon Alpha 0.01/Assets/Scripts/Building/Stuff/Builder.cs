@@ -75,7 +75,6 @@ public class Builder : MonoBehaviour
                     rotat = 0;
                 }
             }
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 50);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
                 Snap(hit);
@@ -391,6 +390,16 @@ public class Builder : MonoBehaviour
                     Ghoust.transform.rotation = hit.transform.rotation;
                     Ghoust.transform.position = hit.transform.position - dir;
                 }
+            }
+        }
+        else if (Ghoust.tag == "PreBuild")
+        {
+            Ghoust.transform.position = hit.point;
+            Vector3 uplift = new Vector3 (0, 2, 0);
+            if (hit.transform.tag == "Floor")
+            {
+                Ghoust.transform.rotation = hit.transform.rotation;
+                Ghoust.transform.position = hit.transform.position + uplift;
             }
         }
         else // mik‰li et osu mihink‰‰n mihin snap toimii, laita mihin ray osoittaa
