@@ -6,6 +6,7 @@ public class IDamageable : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] protected float health = 50f;
     [SerializeField] protected float maxHealth = 50f;
+    [SerializeField] protected bool CanTakeKnockback = true;
 
     [Header("Effects")]
     [SerializeField] protected ParticleSystem Blood;
@@ -25,7 +26,7 @@ public class IDamageable : MonoBehaviour
     {
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
 
-        transform.position += KnockBack;
+        if (CanTakeKnockback) { transform.position += KnockBack; }
 
         Instantiate(Blood, transform.position, Quaternion.identity);
 

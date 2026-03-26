@@ -29,7 +29,10 @@ public class TurretAI : IDamageable
         {
             if (PointAtTarget())
             {
-                Shoot();
+                if (CanC())
+                {
+                    Shoot();
+                }
             }
         }
     }
@@ -148,6 +151,25 @@ public class TurretAI : IDamageable
         if (xyHit == 2)
         {
             return true;
+        }
+        return false;
+    }
+
+    private bool CanC()
+    {
+        if (Head != null)
+        {
+            if (!Physics.Linecast(Head.position, target.transform.position))
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (!Physics.Linecast(transform.position, target.transform.position))
+            {
+                return true;
+            }
         }
         return false;
     }
