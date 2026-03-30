@@ -108,7 +108,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
             // activeSlot will now reference this item, no problem
         }
     }
-    private void TryMergeWith(InventoryItem other)
+    private void TryMergeWith(InventoryItem other) //merge
     {
         if (myItem.itemTag != SlotTag.Stackable) return;
         if (other.myItem != myItem) return;
