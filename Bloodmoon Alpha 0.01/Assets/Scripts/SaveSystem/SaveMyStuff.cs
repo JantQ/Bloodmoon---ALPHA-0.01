@@ -54,7 +54,6 @@ public class SaveMyStuff : MonoBehaviour
                     }
                 }
             }
-            RectTransform rt = item.GetComponent<RectTransform>();
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }

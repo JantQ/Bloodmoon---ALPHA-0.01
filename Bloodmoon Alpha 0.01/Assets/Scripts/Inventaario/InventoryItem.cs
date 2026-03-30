@@ -33,7 +33,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         if (itemIcon != null && myItem != null)
             itemIcon.sprite = myItem.sprite;
 
-        if (myItem.itemTag == SlotTag.Stackable)
+        if (myItem.IsStackableItem())
         {
             count = 1;
             UpdateCountText();

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Storage : MonoBehaviour
 {
     GameObject storageUI;
+    bool saved = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private class itemInfo
     {
@@ -18,15 +19,17 @@ public class Storage : MonoBehaviour
     }
     private List<itemInfo> storage = new List<itemInfo>();
     public int capasity;
-    void Start()
-    {
-        storageUI = GameObject.Find("Storage");
-    }
 
     public void StorageSave()
     {
+        if (saved) {  return; }
+        storageUI.SetActive(true);
+        foreach (Transform t in storageUI.transform) 
+        {
+            t.gameObject.SetActive(true);
+        }
         storage.Clear();
-
+        saved = true;
         foreach (InventoryItem item in storageUI.GetComponentsInChildren<InventoryItem>())
         {
             itemInfo info = new itemInfo();
@@ -39,10 +42,17 @@ public class Storage : MonoBehaviour
 
             storage.Add(info);
         }
+        foreach (Transform t in storageUI.transform)
+        {
+            t.gameObject.SetActive(false);
+        }
+        storageUI.SetActive(false);
     }
 
     public void StorageLoad()
     {
+        if (storageUI == null) { storageUI = GameObject.Find("Storage"); }
+        saved = false;
         foreach(Transform child in storageUI.transform)
         {
             if (child.GetComponentInChildren<InventoryItem>() != null)
@@ -69,7 +79,6 @@ public class Storage : MonoBehaviour
                     }
                 }
             }
-            RectTransform rt = item.GetComponent<RectTransform>();
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }

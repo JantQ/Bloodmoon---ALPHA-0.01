@@ -37,8 +37,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             Inventory.carriedItem = null;
             return;
         }
-        if (itemInSlot.myItem.itemTag == SlotTag.Stackable &&
-            item.myItem.itemTag == SlotTag.Stackable &&
+        if (itemInSlot.myItem.IsStackableItem() &&
+            item.myItem.IsStackableItem() &&
             itemInSlot.myItem == item.myItem) // stack
         {
             int maxStack = 100; 
@@ -51,10 +51,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
                 item.count -= amountToMove;
                 item.UpdateCountText();
 
-                if (item.count <= 0)
+                //if (item.count <= 0)
                 {
-                    Destroy(item.gameObject);
-                    Inventory.carriedItem = null;
+                    //Destroy(item.gameObject);
+                    //Inventory.carriedItem = null;
                 }
             }
             return;
