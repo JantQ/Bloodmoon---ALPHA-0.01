@@ -48,6 +48,7 @@ public class BoxFinder : MonoBehaviour
                     {
                         hit.transform.GetComponent<BoxOpener>().StartLoop();
                     }
+                    hit.transform.GetComponent<Storage>().StorageLoad();
                 }
             }
         }

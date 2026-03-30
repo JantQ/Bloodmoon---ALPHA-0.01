@@ -12,7 +12,7 @@ public class BoxOpener : MonoBehaviour
     private Quaternion ClosedRotation = new Quaternion();
     private Quaternion OpendRotation = new Quaternion();
 
-    private GameObject MainInventory;
+    private GameObject Storage;
 
     public bool test = false;
 
@@ -35,9 +35,9 @@ public class BoxOpener : MonoBehaviour
 
     public void StartLoop()
     {
-        if (MainInventory == null)
+        if (Storage == null)
         {
-            MainInventory = GameObject.Find("MainInventory");
+            Storage = GameObject.Find("Storage");
         }
         open = !open;
         if (loopCoroutine != null)
@@ -47,7 +47,7 @@ public class BoxOpener : MonoBehaviour
         loopCoroutine = StartCoroutine(Loop());
     }
 
-    private void StopLoop()
+    public void StopLoop()
     {
         if (loopCoroutine != null)
             StopCoroutine(loopCoroutine);
@@ -57,9 +57,10 @@ public class BoxOpener : MonoBehaviour
     {
         while (true)
         {
-            if (MainInventory.active == false)
+            if (Storage.active == false)
             {
                 open = false;
+                GetComponent<Storage>().StorageSave();
             }
             OpenUpdate();
             yield return null; // next frame
