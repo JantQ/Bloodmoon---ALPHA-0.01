@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -78,6 +79,12 @@ public class Storage : MonoBehaviour
                     {
                         item.GetComponent<InventoryItem>().AddStack(storage[i].number-1);
                     }
+                    RectTransform rt = item.GetComponent<RectTransform>();
+                    rt.anchorMin = Vector2.zero;
+                    rt.anchorMax = Vector2.one;
+                    rt.offsetMin = Vector2.zero;
+                    rt.offsetMax = Vector2.zero;
+                    rt.localScale = Vector3.one;
                 }
             }
         }
