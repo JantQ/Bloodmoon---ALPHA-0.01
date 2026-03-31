@@ -11,7 +11,7 @@ public class SaveMyStuff : MonoBehaviour
 {
     public GameObject ItemPrefab;
     public Item[] items;
-    public void Save(ref InventoryData Data)
+    public void Save(ref InventoryData Data) //Save
     {
         Data.InventoryItems = new List<string>();
         Data.ParentsNames = new List<string>();
