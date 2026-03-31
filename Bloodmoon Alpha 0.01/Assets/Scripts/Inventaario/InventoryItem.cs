@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -47,8 +47,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     public void AddStack(int amount)
     {
-        int maxStack = myItem != null ? myItem.GetMaxStackSize() : int.MaxValue;
-        count = Mathf.Clamp(count + amount, 0, maxStack);
+        count += amount;
         UpdateCountText();
     }
 
@@ -62,6 +61,13 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            // If we are carrying something and clicked another item → try merge
+            if (Inventory.carriedItem != null && Inventory.carriedItem != this)
+            {
+                TryMergeWith(Inventory.carriedItem);
+                return;
+            }
+
             Inventory.Singleton.SetCarriedItem(this);
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
@@ -100,6 +106,29 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         {
             activeSlot.SetItem(this);
             // activeSlot will now reference this item, no problem
+        }
+    }
+    private void TryMergeWith(InventoryItem other) //merge
+    {
+        if (!myItem.IsStackableItem()) return;
+        if (other.myItem != myItem) return;
+
+        int maxStack = 100;
+        int spaceLeft = maxStack - count;
+
+        if (spaceLeft <= 0) return;
+
+        int amountToMove = Mathf.Min(spaceLeft, other.count);
+
+        AddStack(amountToMove);
+
+        other.count -= amountToMove;
+        other.UpdateCountText();
+
+        if (other.count <= 0)
+        {
+            Destroy(other.gameObject);
+            Inventory.carriedItem = null;
         }
     }
 }

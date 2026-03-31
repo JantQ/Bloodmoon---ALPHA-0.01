@@ -11,8 +11,9 @@ public class SaveMyStuff : MonoBehaviour
 {
     public GameObject ItemPrefab;
     public Item[] items;
-    public void Save(ref InventoryData Data)
+    public void Save(ref InventoryData Data) //Save
     {
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(true);
         Data.InventoryItems = new List<string>();
         Data.ParentsNames = new List<string>();
         Data.InventoryNumbers = new List<int>();
@@ -29,9 +30,11 @@ public class SaveMyStuff : MonoBehaviour
                 Data.InventoryNumbers.Add(0);
             }
         }
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
     }
     public void Load(InventoryData Data)
     {
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(true);
         foreach (InventoryItem item in transform.GetComponentsInChildren<InventoryItem>())
         {
             Destroy(item.gameObject);
@@ -54,10 +57,10 @@ public class SaveMyStuff : MonoBehaviour
                     }
                 }
             }
-            RectTransform rt = item.GetComponent<RectTransform>();
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
     }
 }
 [System.Serializable]
