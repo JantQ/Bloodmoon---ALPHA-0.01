@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Storage : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class Storage : MonoBehaviour
                 Destroy(child.GetComponentInChildren<InventoryItem>().gameObject);
             }
         }
-
+        Item _item = null;
         for (int i = 0; i < storage.Count; i++)
         {
             GameObject item = Instantiate(storageUI.GetComponentInParent<SaveMyStuff>().ItemPrefab, GameObject.Find(storage[i].slot).transform);
@@ -68,23 +69,17 @@ public class Storage : MonoBehaviour
             {
                 if (storage[i].item == storageUI.GetComponentInParent<SaveMyStuff>().items[j].name)
                 {
+                    _item = storageUI.GetComponentInParent<SaveMyStuff>().items[j];
                     item.GetComponent<InventoryItem>().myItem = storageUI.GetComponentInParent<SaveMyStuff>().items[j];
-                    Debug.Log(storage[i].number);
+                    item.GetComponent<InventoryItem>().Initialize(_item, item.GetComponentInParent<InventorySlot>());
+                    item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
+                    item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
                     if (storage[i].number > 1)
                     {
-                        item.GetComponent<InventoryItem>().count = storage[i].number;
-                        Debug.Log(item.GetComponent<InventoryItem>().count);
-                        item.GetComponentInChildren<Text>().text = Convert.ToString(storage[i].number);
-                    }
-                    else
-                    {
-                        item.GetComponentInChildren<Text>().text = "";
+                        item.GetComponent<InventoryItem>().AddStack(storage[i].number-1);
                     }
                 }
             }
-            item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
-            Debug.Log(item.GetComponent<InventoryItem>().count);
-            item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }
     }
 }
