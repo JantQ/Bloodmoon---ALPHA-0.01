@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   ingredients:
-  - item: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
+  - item: {fileID: 11400000, guid: c8ce2c2d36779014d955258626b96535, type: 2}
     amount: 1
   result: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
   resultAmount: 1
