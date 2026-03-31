@@ -69,8 +69,11 @@ public class Storage : MonoBehaviour
                 if (storage[i].item == storageUI.GetComponentInParent<SaveMyStuff>().items[j].name)
                 {
                     item.GetComponent<InventoryItem>().myItem = storageUI.GetComponentInParent<SaveMyStuff>().items[j];
+                    Debug.Log(storage[i].number);
                     if (storage[i].number > 1)
                     {
+                        item.GetComponent<InventoryItem>().count = storage[i].number;
+                        Debug.Log(item.GetComponent<InventoryItem>().count);
                         item.GetComponentInChildren<Text>().text = Convert.ToString(storage[i].number);
                     }
                     else
@@ -80,6 +83,7 @@ public class Storage : MonoBehaviour
                 }
             }
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
+            Debug.Log(item.GetComponent<InventoryItem>().count);
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }
     }

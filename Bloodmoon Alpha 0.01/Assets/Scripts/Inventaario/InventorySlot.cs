@@ -48,7 +48,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             {
                 int amountToMove = Mathf.Min(spaceLeft, item.count);
                 itemInSlot.AddStack(amountToMove);
-                item.count -= amountToMove;
+                //item.count -= amountToMove;
                 item.UpdateCountText();
 
                 //if (item.count <= 0)
