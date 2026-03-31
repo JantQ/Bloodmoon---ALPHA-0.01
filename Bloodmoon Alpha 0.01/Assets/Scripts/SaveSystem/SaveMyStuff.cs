@@ -11,7 +11,7 @@ public class SaveMyStuff : MonoBehaviour
 {
     public GameObject ItemPrefab;
     public Item[] items;
-    public void Save(ref InventoryData Data)
+    public void Save(ref InventoryData Data) //Save
     {
         GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(true);
         Data.InventoryItems = new List<string>();
