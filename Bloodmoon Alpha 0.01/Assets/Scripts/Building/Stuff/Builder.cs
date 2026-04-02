@@ -505,6 +505,7 @@ public class Builder : MonoBehaviour
         }
         else
         {
+            display.UpdatePriceDisplay(null, 0);
             Debug.Log("No Price");
         }
     } 
