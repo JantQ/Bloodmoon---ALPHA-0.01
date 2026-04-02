@@ -60,7 +60,9 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
 
         Inventory.carriedItem = null;
+        Inventory.Singleton.UpdateSlot(this);
     }
+
 
     protected void PlaceItemInSlot(InventoryItem item)
     {
@@ -75,10 +77,14 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         rt.offsetMin = Vector2.zero;
         rt.offsetMax = Vector2.zero;
         rt.localScale = Vector3.one;
+
+        // --- Notify hotbar controller ---
+        PlayerHotbarController.Instance?.OnSlotUpdated(this);
     }
 
     public void ClearSlot()
     {
         myItem = null;
+        PlayerHotbarController.Instance?.OnSlotUpdated(this);
     }
 }
