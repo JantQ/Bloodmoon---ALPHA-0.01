@@ -5,11 +5,13 @@ public class InventoryToggle : MonoBehaviour
     public GameObject inventoryUI;       // Parent of all inventory elements
     public string excludeTag = "Hotbar"; // Tag for UI elements that should always stay visible
     public KeyCode toggleKey = KeyCode.I;
+    PauseMenu pausemenu;
 
     private bool isOpen;
 
     void Start()
     {
+        pausemenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
         SetInventoryActive(false);
         LockCursor();
     }
@@ -25,18 +27,21 @@ public class InventoryToggle : MonoBehaviour
         }
     }
 
-    void OpenInventory()
+    public void OpenInventory()
     {
-        isOpen = true;
-        SetInventoryActive(true);
+        if (!pausemenu.isPaused)
+        {
+            isOpen = true;
+            SetInventoryActive(true);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-        Time.timeScale = 0f; // optional
+            Time.timeScale = 0f; // optional
+        }
     }
 
-    void CloseInventory()
+    public void CloseInventory()
     {
         isOpen = false;
         SetInventoryActive(false);
@@ -53,13 +58,17 @@ public class InventoryToggle : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void SetInventoryActive(bool active)
+    public void SetInventoryActive(bool active)
     {
         // Toggle all children except those with the excludeTag
         foreach (Transform child in inventoryUI.transform)
         {
             if (!child.CompareTag(excludeTag))
                 child.gameObject.SetActive(active);
+            if (child.name == "Storage")
+            {
+                child.gameObject.SetActive(false);
+            }
         }
     }
 }

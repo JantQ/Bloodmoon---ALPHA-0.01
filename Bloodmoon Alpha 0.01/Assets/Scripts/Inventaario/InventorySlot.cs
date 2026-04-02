@@ -1,59 +1,69 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    public InventoryItem myItem {  get; set; }
+    public InventoryItem myItem { get; set; }
     public SlotTag myTag;
-    public void OnPointerClick(PointerEventData eventData)
+
+    // Make this method virtual
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
-            return;
-
-        // No carried item → nothing to place
-        if (Inventory.carriedItem == null)
-            return;
-
-        // Slot tag restriction (equipment slots, etc.)
-        if (myTag != SlotTag.None &&
-            Inventory.carriedItem.myItem.itemTag != myTag)
-            return;
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+        if (Inventory.carriedItem == null) return;
+        if (myTag != SlotTag.None && Inventory.carriedItem.myItem.itemTag != myTag) return;
 
         SetItem(Inventory.carriedItem);
     }
-    public void SetItem(InventoryItem item)
+
+    // Make this method virtual
+    public virtual void SetItem(InventoryItem item)
     {
         if (item == null) return;
 
+        InventoryItem itemInSlot = myItem;
         InventorySlot fromSlot = item.activeSlot;
-        InventoryItem itemInThisSlot = myItem;
 
-        // STACKING
-        if (itemInThisSlot != null &&
-             itemInThisSlot != item &&
-            itemInThisSlot.myItem.IsStackableItem() &&
-            itemInThisSlot.myItem == item.myItem)
+        if (itemInSlot == null)
         {
-            int total = itemInThisSlot.count + item.count;
-            int maxStack = itemInThisSlot.myItem.GetMaxStackSize();
+            PlaceItemInSlot(item);
+            if (fromSlot != null) fromSlot.myItem = null;
+            Inventory.carriedItem = null;
+            return;
+        }
 
-            if (total <= maxStack)
+        if (itemInSlot.myItem.IsStackableItem() && item.myItem.IsStackableItem() && itemInSlot.myItem == item.myItem)
+        {
+            int maxStack = 100;
+            int spaceLeft = maxStack - itemInSlot.count;
+            if (spaceLeft > 0)
             {
-                itemInThisSlot.AddStack(item.count);
-                Destroy(item.gameObject);
-                Inventory.carriedItem = null;
-            }
-            else
-            {
-                itemInThisSlot.count = maxStack;
-                itemInThisSlot.UpdateCountText();
-                item.count = total - maxStack;
+                int amountToMove = Mathf.Min(spaceLeft, item.count);
+                itemInSlot.AddStack(amountToMove);
+                item.count -= amountToMove;
                 item.UpdateCountText();
             }
             return;
         }
 
+        PlaceItemInSlot(item);
+
+        if (fromSlot != null)
+        {
+            fromSlot.myItem = itemInSlot;
+            if (itemInSlot != null)
+            {
+                itemInSlot.activeSlot = fromSlot;
+                itemInSlot.transform.SetParent(fromSlot.transform, false);
+                itemInSlot.canvasGroup.blocksRaycasts = true;
+            }
+        }
+
+        Inventory.carriedItem = null;
+    }
+
+    protected void PlaceItemInSlot(InventoryItem item)
+    {
         myItem = item;
         item.activeSlot = this;
         item.transform.SetParent(transform, false);
@@ -65,35 +75,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         rt.offsetMin = Vector2.zero;
         rt.offsetMax = Vector2.zero;
         rt.localScale = Vector3.one;
-
-        // If item came from a slot
-        if (fromSlot != null && fromSlot != this)
-        {
-            // Swap back the previous item (if any)
-            fromSlot.myItem = itemInThisSlot;
-
-            if (itemInThisSlot != null)
-            {
-                itemInThisSlot.activeSlot = fromSlot;
-                itemInThisSlot.transform.SetParent(fromSlot.transform, false);
-                itemInThisSlot.canvasGroup.blocksRaycasts = true;
-            }
-        }
-        else if (fromSlot == null && itemInThisSlot != null && itemInThisSlot != item)
-        {
-            Inventory.carriedItem = itemInThisSlot;
-            itemInThisSlot.activeSlot = null;
-            itemInThisSlot.transform.SetParent(Inventory.Singleton.DraggableRoot, false);
-            itemInThisSlot.canvasGroup.blocksRaycasts = false;
-            return;
-        }
-
-        Inventory.carriedItem = null;
-
-        if (myTag != SlotTag.None)
-            Inventory.Singleton.EquipEquipment(myTag, myItem);
-
     }
+
     public void ClearSlot()
     {
         myItem = null;

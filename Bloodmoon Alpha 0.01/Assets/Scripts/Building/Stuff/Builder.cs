@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class Builder : MonoBehaviour
 {
+    private PriceDisplay display;
+    private BuildingPrice price;
     /// <summary>
     /// Onko pelaaja rakentamassa?
     /// </summary>
@@ -35,11 +37,24 @@ public class Builder : MonoBehaviour
 
     public LocalNavUpdate update;
 
+    PauseMenu pause;
+
+    private void Start()
+    {
+        price = GetComponent<BuildingPrice>();
+        display = GameObject.Find("PlayerHUD").GetComponentInChildren<PriceDisplay>();
+        pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) // Togle building mode
+        if (Input.GetKeyDown(KeyCode.B) && !pause.isPaused) // Togle building mode
         {
             building = !building;
+            if (!building)
+            {
+                display.UpdatePriceDisplay(null, 0);
+            }
         }
         if (building)//Jos rakentamassa
         {
@@ -430,16 +445,47 @@ public class Builder : MonoBehaviour
     {
         Validation val = Ghoust.GetComponentInChildren<Validation>();
         bool valid_bool = val.valid;
+        priceHandler();
         if (valid_bool)
         {
-            val.transform.GetComponentsInChildren<Renderer>()[0].material = valid;
+            Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in ren)
+            {
+                r.material = valid;
+            }
         }
         else
         {
-            val.transform.GetComponentsInChildren<Renderer>()[0].material = invalid;
+            Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in ren)
+            {
+                r.material = invalid;
+            }
         }
         return valid_bool;
     }
+
+    private void priceHandler()
+    {
+        bool Priced = false;
+        BuildingPrice.Price ghoustPrice = new BuildingPrice.Price();
+        foreach (BuildingPrice.Price pr in price.Pricing)
+        {
+            if (pr.BuildingName+"(Clone)" == Ghoust.name)
+            {
+                Priced = true;
+                ghoustPrice = pr;
+            }
+        }
+        if (Priced)
+        {
+            display.UpdatePriceDisplay(ghoustPrice.Material[0].sprite, ghoustPrice.Prices[0]);
+        }
+        else
+        {
+            Debug.Log("No Price");
+        }
+    } 
 
     private void SpinMeRightRound(RaycastHit hit)
     {
@@ -497,6 +543,10 @@ public class Builder : MonoBehaviour
         else if (rotat != 0 && hit.transform.tag == "Floor")
         {
             Ghoust.transform.Rotate(0, 0, rotat);
+        }
+        else if (rotat != 0 && hit.transform.tag == "Ground")
+        {
+            Ghoust.transform.Rotate(0, rotat, 0);
         }
     }
 }
