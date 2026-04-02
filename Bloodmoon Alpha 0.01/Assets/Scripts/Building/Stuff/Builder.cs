@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class Builder : MonoBehaviour
 {
+    private int priceNum;
     private PriceDisplay display;
     private BuildingPrice price;
     /// <summary>
@@ -58,10 +59,23 @@ public class Builder : MonoBehaviour
         }
         if (building)//Jos rakentamassa
         {
-            if (Input.GetMouseButtonDown(1)) // jos painat oikeaa hiiren nappia vaihda rakennettavaa esinettä listan sisällä
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll != 0) // jos painat oikeaa hiiren nappia vaihda rakennettavaa esinettä listan sisällä
             {
-                build = (build + 1) % buildings.Count;
-                Destroy(Ghoust);
+                if (scroll > 0)
+                {
+                    build = (build + 1) % buildings.Count;
+                    Destroy(Ghoust);
+                }
+                else
+                {
+                    build = (build - 1);
+                    if (build < 0)
+                    {
+                        build = buildings.Count - 1;
+                    }
+                    Destroy(Ghoust);
+                }
             }
             if (Ghoust == null) // Jos haamu puuttuu, luo uusi haamu ja poista haamut colliderit
             {
@@ -479,10 +493,19 @@ public class Builder : MonoBehaviour
         }
         if (Priced)
         {
-            display.UpdatePriceDisplay(ghoustPrice.Material[0].sprite, ghoustPrice.Prices[0]);
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                priceNum = (priceNum + 1) % ghoustPrice.Prices.Count;
+            }
+            else
+            {
+                priceNum = priceNum % ghoustPrice.Prices.Count;
+            }
+            display.UpdatePriceDisplay(ghoustPrice.Material[priceNum].sprite, ghoustPrice.Prices[priceNum]);
         }
         else
         {
+            display.UpdatePriceDisplay(null, 0);
             Debug.Log("No Price");
         }
     } 
