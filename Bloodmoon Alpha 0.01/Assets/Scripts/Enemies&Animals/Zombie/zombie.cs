@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Zombie : AnimalNpc
+public abstract class Zombie : AnimalNpc
 {
     [Header("Horde Behaviour")]
     [SerializeField] protected float hordeAlertRadius = 20f;
@@ -19,6 +19,7 @@ public class Zombie : AnimalNpc
     [SerializeField] protected float idleWaitMin = 2f;
     [SerializeField] protected float idleWaitMax = 5f;
 
+    // Shared across all Zombie subclasses for horde logic
     private static readonly List<Zombie> ActiveZombies = new List<Zombie>();
 
     protected Coroutine routine;
@@ -26,6 +27,7 @@ public class Zombie : AnimalNpc
     protected float attackAnimationUntil;
     protected float nextAttackTime;
     protected bool isAttackAnimating;
+
 
     protected override void OnEnable()
     {
@@ -66,13 +68,9 @@ public class Zombie : AnimalNpc
                 (agent.isOnNavMesh && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
 
             if (IsHordeAlerted())
-            {
                 yield return StartCoroutine(AggressiveState());
-            }
             else
-            {
                 yield return StartCoroutine(IdleState());
-            }
         }
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class AnimalNpc : IDamageable
+public abstract class AnimalNpc : IDamageable
 {
     [Header("References")]
     [SerializeField] protected NavMeshAgent agent;
