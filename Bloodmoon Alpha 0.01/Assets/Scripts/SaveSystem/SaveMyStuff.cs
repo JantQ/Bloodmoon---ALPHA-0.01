@@ -63,6 +63,12 @@ public class SaveMyStuff : MonoBehaviour
             {
                 item.GetComponent<InventoryItem>().AddStack(Data.InventoryNumbers[i]);
             }
+            RectTransform rt = item.GetComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+            rt.localScale = Vector3.one;
         }
         GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
     }
