@@ -3264,6 +3264,7 @@ MonoBehaviour:
   mouseSensitivity: 100
   offset: {x: 0, y: 0.27, z: 0.18}
   followSmoothSpeed: 500
+  aimSensitivityMultiplier: 0.3
 --- !u!1 &2800040482931429851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7652,8 +7653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   health: 50
   maxHealth: 50
-  CanTakeKnockback: 0
-  Blood: {fileID: 3802586455251347144, guid: c68e5687c76bddf4eb0a8f46c143704e, type: 3}
+  canTakeKnockback: 1
+  bloodEffect: {fileID: 0}
   moveSpeed: 2
   runMultiplier: 2.5
   crouchMultiplier: 0.5
@@ -7707,7 +7708,6 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7734980911737004477}
   m_Enabled: 1
-  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5803e78f67d70a42a7fb4ba743b578b, type: 3}
   m_Name: 

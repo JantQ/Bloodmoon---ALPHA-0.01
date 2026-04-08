@@ -22081,6 +22081,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ae84a54c026c4a4e92705d2ee996e78, type: 2}
   - {fileID: 11400000, guid: e954398941476a04abdc6f0b55383abb, type: 2}
   - {fileID: 11400000, guid: 1e13dcd62a4dd344ea16c5ad1242f191, type: 2}
+  - {fileID: 11400000, guid: 237e8d1812a26c84a992aeca1a0ba02a, type: 2}
   giveItemBtn: {fileID: 7871723213060288303}
 --- !u!114 &3915245123481920150
 MonoBehaviour:
@@ -22114,6 +22115,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
   - {fileID: 11400000, guid: e954398941476a04abdc6f0b55383abb, type: 2}
   - {fileID: 11400000, guid: 1e13dcd62a4dd344ea16c5ad1242f191, type: 2}
+  - {fileID: 11400000, guid: 237e8d1812a26c84a992aeca1a0ba02a, type: 2}
 --- !u!114 &6197118933186147625
 MonoBehaviour:
   m_ObjectHideFlags: 0

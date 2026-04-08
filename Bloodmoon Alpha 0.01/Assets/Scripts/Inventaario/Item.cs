@@ -42,6 +42,11 @@ public class Item : ScriptableObject
 
     [Header("World")]
     public GameObject worldPrefab;
+
+    [Header("Aiming")]
+    public float aimFOV = 40f;     
+    public float aimSpeed = 10f;   
+
     public bool IsStackableItem()
     {
         return itemTag == SlotTag.Stackable || itemTag == SlotTag.Food || itemTag == SlotTag.Water;
