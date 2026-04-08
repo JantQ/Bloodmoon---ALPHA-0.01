@@ -14,6 +14,8 @@ public class RocketProjectile : MonoBehaviour
     private float damage;
     private float knockback;
 
+    private Vector3 lastPosition;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,6 +37,8 @@ public class RocketProjectile : MonoBehaviour
 
     private void Update()
     {
+        lastPosition = transform.position;
+
         if (rb.linearVelocity.sqrMagnitude > 0.1f)
             transform.forward = rb.linearVelocity.normalized;
     }
@@ -46,6 +50,9 @@ public class RocketProjectile : MonoBehaviour
 
     void Explode(Vector3 position, Collider directHit)
     {
+        // 🔴 DEBUG: draw explosion sphere in-game (for 2 seconds)
+        DrawDebugSphere(position, explosionRadius, 2f, Color.red);
+
         Collider[] hits = Physics.OverlapSphere(position, explosionRadius);
 
         foreach (Collider hit in hits)
@@ -55,14 +62,18 @@ public class RocketProjectile : MonoBehaviour
 
             float distance = Vector3.Distance(position, hit.transform.position);
 
-            // Full damage on direct hit
-            float finalDamage = damage;
+            float finalDamage;
 
-            if (hit != directHit)
+            // 🎯 Direct hit = full damage
+            if (hit == directHit)
             {
-                // Falloff damage for AOE
+                finalDamage = damage;
+            }
+            else
+            {
+                // 🌊 AOE falloff (max 60%)
                 float falloff = 1f - (distance / explosionRadius);
-                finalDamage *= Mathf.Clamp01(falloff);
+                finalDamage = damage * 0.6f * Mathf.Clamp01(falloff);
             }
 
             Vector3 dir = (hit.transform.position - position).normalized;
@@ -71,7 +82,7 @@ public class RocketProjectile : MonoBehaviour
             dmgTarget.TakeDamage(finalDamage, knock);
         }
 
-        // Optional: explosion force
+        // 💥 Physics explosion force
         foreach (Collider hit in hits)
         {
             Rigidbody r = hit.GetComponent<Rigidbody>();
@@ -81,8 +92,37 @@ public class RocketProjectile : MonoBehaviour
             }
         }
 
-        // TODO: add explosion VFX here if you want
-
         Destroy(gameObject);
+    }
+
+    // 🧠 Draw runtime debug sphere using lines
+    void DrawDebugSphere(Vector3 center, float radius, float duration, Color color)
+    {
+        int segments = 20;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = (i / (float)segments) * Mathf.PI * 2;
+            float angle2 = ((i + 1) / (float)segments) * Mathf.PI * 2;
+
+            Vector3 p1 = center + new Vector3(Mathf.Cos(angle1), 0, Mathf.Sin(angle1)) * radius;
+            Vector3 p2 = center + new Vector3(Mathf.Cos(angle2), 0, Mathf.Sin(angle2)) * radius;
+
+            Vector3 p3 = center + new Vector3(0, Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+            Vector3 p4 = center + new Vector3(0, Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+
+            Vector3 p5 = center + new Vector3(Mathf.Cos(angle1), Mathf.Sin(angle1), 0) * radius;
+            Vector3 p6 = center + new Vector3(Mathf.Cos(angle2), Mathf.Sin(angle2), 0) * radius;
+
+            Debug.DrawLine(p1, p2, color, duration);
+            Debug.DrawLine(p3, p4, color, duration);
+            Debug.DrawLine(p5, p6, color, duration);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(lastPosition, explosionRadius);
     }
 }
